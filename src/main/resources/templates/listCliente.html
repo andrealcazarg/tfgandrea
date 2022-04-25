@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/loginregister2.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/cliente/new">Nuevo Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/producto/list">Listar Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/producto/list">Listar Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categoria/list">Listar Categoria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/categoria/list">Listar Categoria</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pedido/list">Ver Pedidos</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+           <ul class="navbar-nav me-auto">
+          <li class="nav-item justify-content-end" >
+            <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+          </li>
+           </ul>
+        </span>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <h1>Clientes de la Empresa</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Nombre Empresa</th>
+                <th>Pais</th>
+                <th>Direccion</th>
+                <th>Apartamento</th>
+                <th>Provincia</th>
+                <th>Localidad</th>
+                <th>Codigo Postal</th>
+                <th>Telefono</th>
+                <th>Email</th>
+            </thead>
+            <tbody>
+            <tr th:each="cliente : ${listaClientes}">
+                <td th:text="${cliente.idCliente}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellidos}"></td>
+                <td th:text="${cliente.nombreEmpresa}"></td>
+                <td th:text="${cliente.pais}"></td>
+                <td th:text="${cliente.direccion}"></td>
+                <td th:text="${cliente.apartamento}"></td>
+                <td th:text="${cliente.provincia.nombre}"></td>
+                <td th:text="${cliente.localidad}"></td>
+                <td th:text="${cliente.codigoPostal}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td><a th:href="@{/cliente/edit/{id}(id=${cliente.idCliente})}" class="btn btn-primary" >Editar</a>
+                    <a th:href="@{/cliente/borrar/{id}(id=${cliente.idCliente})}" class="btn btn-danger" >Borrar</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

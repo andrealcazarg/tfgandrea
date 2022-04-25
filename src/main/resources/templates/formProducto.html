@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Tienda Online</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/starter-template.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!--Plantilla -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/cliente/list">Listar Cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/producto/list">Listar Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/categoria/new">Nueva Categoria</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/pedido/list">Ver Pedidos</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+           <ul class="navbar-nav me-auto">
+          <li class="nav-item justify-content-end" >
+            <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+          </li>
+           </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+<!-- Formulario -->
+<div class="container">
+  <div class="starter-template">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8" style="margin:auto">
+        <form method="post" action="#" th:action="${productoForm.idProducto != 0} ? @{/producto/edit/submit} : @{/producto/new/submit}"
+              th:object="${productoForm}">
+          <h1 th:text="${productoForm.idProducto!= 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
+
+
+          <div class="form-group">
+            <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" placeholder="miel" th:field="*{nombre}" required/>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label> <input type="text" class="form-control" id="descripcion" placeholder="flores" th:field="*{descripcion}" required />
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio</label> <input type="text" class="form-control" id="precio" placeholder="6€" th:field="*{precio}"  />
+          </div>
+          <div class="form-group">
+            <label for="peso">Peso</label> <input type="text" class="form-control" id="peso" placeholder="1kg" th:field="*{peso}"  />
+          </div>
+          <div class="form-group">
+            <label for="disponible">Disponible</label> <input type="text" class="form-control" id="disponible" placeholder="si" th:field="*{disponible}"  />
+          </div>
+          <div class="form-group">
+            <label for="categoria">Categoria</label> <select
+                  th:field="*{categoria}" class="form-control"  id="categoria">
+            <option value="-1">---</option>
+            <option th:each="categoria : ${categorias}"
+                    th:value="${categoria.idCategoria}" th:text="${categoria.nombre}">Categoria</option>
+          </select>
+          </div>
+
+          <button type="submit" class="btn btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

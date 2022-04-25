@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Tienda Online</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="loginregister.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!--Plantilla -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="/cliente/list">Listar Cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cliente/new">Nuevo Cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/producto/new">Nuevo Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/producto/list">Listar Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/categoria/list">Listar Categoria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pedido/new">Ver Pedidos</a>
+          </li>
+
+        </ul>
+        <span class="navbar-text">
+           <ul class="navbar-nav me-auto">
+          <li class="nav-item justify-content-end" >
+            <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+          </li>
+           </ul>
+        </span>
+
+      </div>
+    </div>
+  </nav>
+
+<!-- Formulario -->
+<div class="container">
+  <div class="starter-template">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8" style="margin:auto">
+        <form method="post" action="#" th:action="${categoriaForm.idCategoria != 0} ? @{/categoria/edit/submit} : @{/categoria/new/submit}"
+              th:object="${categoriaForm}">
+          <h1 th:text="${categoriaForm.idCategoria != 0} ? 'Editar categoria' : 'Nuevo categoria'">Nuevo categoria</h1>
+
+          <div class="form-group">
+            <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" placeholder="5928553w" th:field="*{nombre}" required/>
+          </div>
+
+          <button type="submit" class="btn btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

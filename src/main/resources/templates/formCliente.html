@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Tienda Online</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/starter-template.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!--Plantilla -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/cliente/list">Listar Cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/producto/new">Nuevo Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/producto/list">Listar Producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/categoria/new">Nueva Categoria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/categoria/list">Listar Categoria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pedido/list">Ver Pedidos</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+           <ul class="navbar-nav me-auto">
+          <li class="nav-item justify-content-end" >
+            <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+          </li>
+           </ul>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+<!-- Formulario -->
+<div class="container">
+  <div class="starter-template">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8" style="margin:auto">
+        <form method="post" action="#" th:action="${clienteForm.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/new/submit}"
+              th:object="${clienteForm}">
+          <h1 th:text="${clienteForm.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
+
+
+          <div class="form-group">
+            <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" placeholder="5928553w" th:field="*{nombre}" required/>
+          </div>
+          <div class="form-group">
+            <label for="apellidos">Apellidos</label> <input type="text" class="form-control" id="apellidos" placeholder="andrea" th:field="*{apellidos}" required />
+          </div>
+          <div class="form-group">
+            <label for="nombre Empresa">Nombre Empresa</label> <input type="text" class="form-control" id="nombre Empresa" placeholder="c/los huertos" th:field="*{nombreEmpresa}" />
+          </div>
+          <div class="form-group">
+            <label for="pais">Pais</label> <input type="email" class="form-control" id="pais" placeholder="España" th:field="*{pais}" readonly/>
+          </div>
+          <div class="form-group">
+            <label for="direccion">Direccion</label> <input type="text" class="form-control" id="direccion" placeholder="usu" th:field="*{direccion}" required/>
+          </div>
+          <div class="form-group">
+            <label for="apartamento">Apartamento</label> <input type="text" class="form-control" id="apartamento" placeholder="1234" th:field="*{apartamento}" required/>
+          </div>
+          <div class="form-group">
+            <label for="provincia">Provincia</label> <select
+                  th:field="*{provincia}" class="form-control"  id="provincia">
+            <option value="-1">---</option>
+            <option th:each="provincia : ${provincias}"
+                    th:value="${provincia.idProvincia}" th:text="${provincia.nombre}">Provincia</option>
+          </select>
+          </div>
+          <div class="form-group">
+            <label for="localidad">Localidad</label> <input type="text" class="form-control" id="localidad" placeholder="6535353" th:field="*{localidad}" required/>
+          <div class="form-group">
+              <label for="codigo Postal">Codigo Postal</label> <input type="text" class="form-control" id="codigo postal" placeholder="6535353" th:field="*{codigoPostal}" required/>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Telefono</label> <input type="text" class="form-control" id="telefono" placeholder="6535353" th:field="*{telefono}" required/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label> <input type="email" class="form-control" id="email" placeholder="6535353" th:field="*{email}" required/>
+          </div>
+          <button type="submit" class="btn btn btn-primary">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

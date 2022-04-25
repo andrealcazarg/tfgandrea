@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="loginregister.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+
+          <!--      <li class="nav-item">
+                    <a class="nav-link" href="/cliente/list">Listar Cliente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/producto/list">Listar Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/producto/list">Listar Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/producto/new">Ver Pedidos</a>
+                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/categoria/list" role="button" aria-haspopup="true" aria-expanded="false">Categoria</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href=#>Listar Categoria</a>
+                        <a class="dropdown-item" href="#">Nueva Categoria</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="navbar-text">
+           <ul class="navbar-nav me-auto">
+          <li class="nav-item justify-content-end" >
+            <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+          </li>
+           </ul>
+        </span>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="starter-template">
+        <h1>Categorias de la Empresa</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+
+            </thead>
+            <tbody>
+            <tr th:each="categoria : ${listaCategorias}">
+                <td th:text="${categoria.idCategoria}"></td>
+                <td th:text="${categoria.nombre}"></td>
+                <td><a th:href="@{/cliente/edit/{id}(id=${categoria.idCategoria})}" class="btn btn-primary" >Editar</a>
+                    <a th:href="@{/cliente/borrar/{id}(id=${categoria.idCategoria})}" class="btn btn-danger" >Borrar</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

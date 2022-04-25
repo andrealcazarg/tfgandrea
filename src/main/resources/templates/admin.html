@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="loginregister.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <p style="color:white">BIENVENIDO A TU PANEL DE ADMINISTRACION</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container login-container">
+    <div class="row">
+
+        <table>
+
+            <tr>
+                <img src="https://mielcuartageneracion.es/wp-content/uploads/2019/12/cropped-22-Pequeno-192x192.png" class="logo" >
+                <td>
+
+                    <div class="col-md-6 login-form-1" >
+                        <form style="padding-top: 0px" method="post" th:action="@{/admin/submit}"  th:object="${usuarioForm}">
+                            <h3>Login</h3>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" th:field="*{email}" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordL">Password</label>
+                                                <input type="password" class="form-control" id="passwordL"  th:field="*{password}" required/>
+                            </div>
+                            <button type="submit" class="btnSubmit">Acceder</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
