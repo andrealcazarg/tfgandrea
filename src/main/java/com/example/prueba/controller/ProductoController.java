@@ -28,7 +28,7 @@ public class ProductoController {
         model.addAttribute("categorias", service.findAll());
         return "formProducto";
     }
-    @GetMapping({"producto/list"})
+    @GetMapping({"/producto/list"})
     public String listarUsu(Model model){
         model.addAttribute("listaProductos", servicio.findAll()) ; // inyecta el servicio gracias al @Autowired anterior
         return "listProducto";

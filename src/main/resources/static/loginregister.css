@@ -6,8 +6,8 @@ body{
     background-color:#ffffff;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 20px 0 rgba(0, 0, 0, 0.10);
     text-align:center;
-    width:400px;
-    height:500px;
+    width:450px;
+    height:430px;
     margin:auto;
     margin-top:4%;
     border-radius:20px;
@@ -35,20 +35,12 @@ body{
 
     font-weight: 600;
     color: #fff;
-    background-color: #0062cc;
+    background-color: #f29d14;
 }
-
-
-.login-form-1 .ForgetPwd{
-    color: #0062cc;
-    font-weight: 600;
-    text-decoration: none;
-}
-.form-group {
-    padding:5%;
-}
-.form-control{
-    margin-top:5%;
+.login-form-1 .btnSubmit:hover{
+    background-color: white;
+    border: 1px solid #f29d14;
+    color:#f29d14;
 }
 
 .logo{
@@ -63,6 +55,25 @@ p{
     padding:8px;
     margin:0;
 }
+.g-color-primary{
+    color: #f29d14;
+}
+.input-group-addon{
+    border: 1px solid black;
+}
+.form-control{
+    border: 1px solid black;
+}
+.fa-lock {
+    padding: 0.5rem;
+    color: orange;
+}
+.fa-envelope{
+    padding: 0.4rem;
+    color: orange;
+}
+.mb-4{
+    width:80%;
+    margin:auto;
 
-
-
+}
