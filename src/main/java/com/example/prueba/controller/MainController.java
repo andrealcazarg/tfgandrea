@@ -16,5 +16,10 @@ public class MainController {
     public String nosotros(Model model) {
         return "nosotros";
     }
+    @GetMapping("/tienda")
+    public String tienda(Model model) {
+        return "tienda";
+    }
+
 
 }
