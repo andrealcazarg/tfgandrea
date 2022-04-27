@@ -1,3 +1,40 @@
-li.nav-item-logout{
-    float:right;
+#sidebar {
+    min-width: 300px;
+    max-width: 300px;
+    background: #1d1919;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#sidebar ul li {
+    font-size: 16px; }
+#sidebar ul li > ul {
+    margin-left: 10px; }
+#sidebar ul li > ul li {
+    font-size: 14px; }
+#sidebar ul li a {
+    padding: 10px 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+#sidebar ul li a:hover {
+    color: #f8b739; }
+.wrapper {
+    width: 100%;
+}
+
+
+.ml-auto,
+.mx-auto {
+    margin-left: auto !important; }
+.btn.btn-primary {
+    background: #f8b739;
+    border-color: #f8b739;
+    color: #fff;
+}
+
+.btn.btn-primary:hover, .btn.btn-primary:focus {
+    background: #f8b739 !important;
+    border-color: #f8b739 !important;
 }
