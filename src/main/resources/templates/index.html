@@ -8,21 +8,33 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="loginregister.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{loginregister3.css}"/>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
-<body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
+<body id="page-home">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="mainNav">
+    <span class="container-fluid">
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="mynavbar">
+        <span class="navbar-text">
+
+           <ul class="navbar-nav me-auto">
+          <li class="nav-item justify-content-start">
+            <a class="nav-link" href="#page-home">
+                <img th:src="@{logo2.png}" class="logo">
+            </a>
+          </li>
+           </ul>
+
+        </span>
+    </span>
+        <span class="navbar-text">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">BIENVENIDOS</a>
+                <li class="nav-item justify-content-end">
+                    <a class="nav-link-home" href="/">BIENVENIDOS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/nosotros">NOSOTROS</a>
@@ -31,8 +43,17 @@
                     <a class="nav-link" href="/carrito">TIENDA</a>
                 </li>
             </ul>
-        </div>
-    </div>
+        </span>
 </nav>
+<section>
+    <div class="container-main"></div>
+    <div class="row"  style="font-size: 45px">Si desea ir más allá de la comparación de las métricas de
+        rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que Search Ads
+        360 haga la comparación por usted. La prueba del texto de anuncios puede determinar cuáles son los anuncios
+        de un grupo que más le ayudarán a alcanzar sus objetivos de conversión. Para ello, la prueba inicia todos los anuncios a la vez y los muestra de
+        Al finalizar la prueba, Search Ads 360 puntúa el rendimiento relativo de
+    </div>
+</section>
+<script th:src="@{/js/scroll.js}"></script>
 </body>
 </html>

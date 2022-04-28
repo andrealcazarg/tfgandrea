@@ -8,12 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/loginregister.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{loginregister3.css}"/>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="mainNav">
     <div class="container-fluid">
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,14 +26,14 @@
                     <a class="nav-link" href="/nosotros">NOSOTROS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/carrito">TIENDA</a>
+                    <a class="nav-link-tienda" href="/carrito">TIENDA</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
+    <div class="container">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5" th:each="producto : ${listaProductosTienda}">
                 <div class="card h-100">
@@ -55,7 +55,14 @@
                 </div>
             </div>
         </div>
+        <div class="row"  style="font-size: 65px">Si desea ir más allá de la comparación de las métricas de
+            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que Search Ads
+            360 haga la comparación por usted. La prueba del texto de anuncios puede determinar cuáles son los anuncios
+            de un grupo que más le ayudarán a alcanzar sus objetivos de conversión. Para ello, la prueba inicia todos los anuncios a la vez y los muestra de
+            Al finalizar la prueba, Search Ads 360 puntúa el rendimiento relativo de
+        </div>
     </div>
 </section>
+<script th:src="@{/js/scroll.js}"></script>
 </body>
 </html>
