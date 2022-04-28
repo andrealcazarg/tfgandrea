@@ -8,8 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="loginregister.css" rel="stylesheet">
-   <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{loginregister2.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -61,29 +62,38 @@
 </div>
 </nav>
 
-<div class="container">
-    <div class="starter-template">
-        <h1>Categorias de la Empresa</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
+<div id="content" class="nav-content">
+    <div class="row">
+        <div class="content-main">
+            <h1>Categorias de la Empresa</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
 
-            </thead>
-            <tbody>
-            <tr th:each="categoria : ${listaCategorias}">
-                <td th:text="${categoria.idCategoria}"></td>
-                <td th:text="${categoria.nombre}"></td>
-                <td><a th:href="@{/cliente/edit/{id}(id=${categoria.idCategoria})}" class="btn btn-primary">Editar</a>
-                    <a th:href="@{/cliente/borrar/{id}(id=${categoria.idCategoria})}" class="btn btn-danger">Borrar</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <tr th:each="categoria : ${listaCategorias}">
+                    <td th:text="${categoria.idCategoria}"></td>
+                    <td th:text="${categoria.nombre}"></td>
+                    <td><a th:href="@{/cliente/edit/{id}(id=${categoria.idCategoria})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/cliente/borrar/{id}(id=${categoria.idCategoria})}" class="btn btn-danger">Borrar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
 </div>
-
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<!--<script src="js/popper.js"></script>-->
+<script th:src="@{js/bootstrap.min.js}"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
