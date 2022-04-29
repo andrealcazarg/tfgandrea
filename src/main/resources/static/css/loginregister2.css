@@ -37,7 +37,7 @@ a{
 .mx-auto {
     margin-left: auto !important; }
 .btn.btn-primary {
-
+    margin-top: 2%;
     background: #f8b739;
     border-color: #f8b739;
     color: #fff;
