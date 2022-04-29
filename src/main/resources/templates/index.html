@@ -8,30 +8,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{loginregister3.css}"/>
+    <link rel="stylesheet" th:href="@{/css/loginregister3.css}"/>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body id="page-home">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="mainNav">
-    <span class="container-fluid">
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div class="container-fluid">
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
         <span class="navbar-text">
 
            <ul class="navbar-nav me-auto">
-          <li class="nav-item justify-content-start">
-            <a class="nav-link" href="#page-home">
-                <img th:src="@{logo2.png}" class="logo">
-            </a>
-          </li>
+              <li class="nav-item justify-content-start">
+                <a class="nav-link" href="#page-home">
+                    <img th:src="@{/img/logo2.png}" class="logo">
+                </a>
+              </li>
            </ul>
 
         </span>
-    </span>
-        <span class="navbar-text">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item justify-content-end">
                     <a class="nav-link-home" href="/">BIENVENIDOS</a>
@@ -43,7 +42,8 @@
                     <a class="nav-link" href="/carrito">TIENDA</a>
                 </li>
             </ul>
-        </span>
+        </div>
+    </div>
 </nav>
 <section>
     <div class="container-main"></div>

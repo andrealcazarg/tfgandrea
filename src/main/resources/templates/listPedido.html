@@ -1,3 +1,5 @@
+<!--
+
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,26 +10,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/loginregister2.css" rel="stylesheet">
-    <script src="/webjars/jquery/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{loginregister2.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid">
         <ul class="navbar-nav me-auto">
-            <!--      <li class="nav-item">
-                      <a class="nav-link" href="/cliente/list">Listar Cliente</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/producto/list">Listar Producto</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/producto/list">Listar Producto</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/producto/new">Ver Pedidos</a>
-                  </li>-->
             <li class="nav-item dropdown">
                 <div class="container-fluid">
                     <ul class="navbar-nav">
@@ -36,7 +26,6 @@
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
                             <ul class="dropdown-menu dropdown-menu-dark"
                                 aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href=/categoria/list>Listar Categoria</a></li>
                                 <li><a class="dropdown-item" href="/categoria/new">Nueva Categoria</a></li>
                             </ul>
                         </li>
@@ -74,31 +63,156 @@
         </span>
     </div>
 </nav>
-<div class="container">
-    <div class="row">
-        <h1>Pedidos de la Empresa</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Confirmado</th>
-                <th>Usuario</th>
 
-            </thead>
-            <tbody>
-            <tr th:each="pedido : ${listaPedidos}">
-                <td th:text="${pedido.idPedido}"></td>
-                <td th:text="${pedido.fecha}"></td>
-                <td th:text="${pedido.confir}"></td>
-                <td th:text="${pedido.cliente.nombre}"></td>
+<div id="content" class="nav-content">
+   <div class="row">
+      <h1>Pedidos de la Empresa</h1>
+      <table class="table">
+          <thead>
+          <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Confirmado</th>
+              <th>Usuario</th>
 
-                <td><a th:href="@{/pedido/edit/{id}(id=${pedido.idPedido})}" class="btn btn-primary" >Editar</a>
-                    <a th:href="@{/pedido/borrar/{id}(id=${pedido.idPedido})}" class="btn btn-danger" >Borrar</a></td>
-            </tr>
-            </tbody>
-        </table>
+          </thead>
+          <tbody>
+          <tr th:each="pedido : ${listaPedidos}">
+              <td th:text="${pedido.idPedido}"></td>
+              <td th:text="${pedido.fecha}"></td>
+              <td th:text="${pedido.confir}"></td>
+              <td th:text="${pedido.cliente.nombre}"></td>
+
+              <td><a th:href="@{/pedido/edit/{id}(id=${pedido.idPedido})}" class="btn btn-primary" >Editar</a>
+                  <a th:href="@{/pedido/borrar/{id}(id=${pedido.idPedido})}" class="btn btn-danger" >Borrar</a></td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+&lt;!&ndash;<script src="js/popper.js"></script>&ndash;&gt;
+<script th:src="@{js/bootstrap.min.js}"></script>
+&lt;!&ndash; Bootstrap core JavaScript
+================================================== &ndash;&gt;
+&lt;!&ndash; Placed at the end of the document so the pages load faster &ndash;&gt;
+<script src="/webjars/jquery/jquery.min.js"></script>
+<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>-->
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{loginregister2.css}"/>
+
+</head>
+<body>
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="p-4 pt-5">
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#clienteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cliente</a>
+                    <ul class="collapse list-unstyled" id="clienteSubmenu">
+                        <li>
+                            <a href="#">Listar Cliente</a>
+                        </li>
+                        <li>
+                            <a href="#">Nuevo Cliente</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#productoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Producto</a>
+                    <ul class="collapse list-unstyled" id="productoSubmenu">
+                        <li>
+                            <a href="#">Listar Producto</a>
+                        </li>
+                        <li>
+                            <a href="#">Nuevo Producto</a>
+                        </li>
+                    </ul>
+                <li>
+                    <a href="#categoriaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categoria</a>
+                    <ul class="collapse list-unstyled" id="categoriaSubmenu">
+                        <li>
+                            <a href="#">Listar Categoria</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" >Pedido</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--    &lt;!&ndash; Page Content  &ndash;&gt;-->
+    <div id="content" class="nav-content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <h1>Pedidos de la Empresa</h1>
+            <!--<table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Confirmado</th>
+                    <th>Usuario</th>
+
+                </thead>
+                <tbody>
+                <tr th:each="pedido : ${listaPedidos}">
+                    <td th:text="${pedido.idPedido}"></td>
+                    <td th:text="${pedido.fecha}"></td>
+                    <td th:text="${pedido.confir}"></td>
+                    <td th:text="${pedido.cliente.nombre}"></td>
+
+                    <td><a th:href="@{/pedido/edit/{id}(id=${pedido.idPedido})}" class="btn btn-primary" >Editar</a>
+                        <a th:href="@{/pedido/borrar/{id}(id=${pedido.idPedido})}" class="btn btn-danger" >Borrar</a></td>
+                </tr>
+                </tbody>
+            </table>-->
+        </div>
     </div>
 </div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<!--&lt;!&ndash;<script src="js/popper.js"></script>&ndash;&gt;-->
+<script th:src="@{js/bootstrap.min.js}"></script>
+<!--&lt;!&ndash; Bootstrap core JavaScript-->
+<!--================================================== &ndash;&gt;-->
+<!--&lt;!&ndash; Placed at the end of the document so the pages load faster &ndash;&gt;-->
+<script src="/webjars/jquery/jquery.min.js"></script>
+<!--<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
 </body>
 </html>

@@ -1,4 +1,4 @@
-/*PARA EL SIDEBAR*/
+/*PARA EL SIDEBAR // panel de administracion */
 body{
     font-family: "Poppins", Arial, sans-serif;
 }
@@ -37,12 +37,22 @@ a{
 .mx-auto {
     margin-left: auto !important; }
 .btn.btn-primary {
+
     background: #f8b739;
     border-color: #f8b739;
     color: #fff;
 }
-
-.btn.btn-primary:hover, .btn.btn-primary:focus {
+.btn-primaryList{
+    margin:auto;
+    background: #007bff;
+    border-color: #f8b739;
+    color: #fff;
+}
+.btn-primaryList:hover{
+    background: #0069d9 !important;
+    color:white;
+}
+.btn.btn-primary:hover, .btn.btn-primary:focus  {
     background: #f8b739 !important;
     border-color: #f8b739 !important;
 }
@@ -56,7 +66,6 @@ a{
 
 .navbar {
     margin:auto;
-    padding: 15px 10px;
     background: #fff;
     border: none;
     border-radius: 0;
@@ -76,4 +85,11 @@ a{
 }
 .row{
     margin: auto;
+}
+.logo {
+    width: 100%;
+    height: 60px;
+}
+ul.navbar-nav{
+    margin:auto;
 }
