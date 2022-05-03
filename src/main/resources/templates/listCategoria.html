@@ -24,10 +24,10 @@
                     <a href="#clienteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cliente</a>
                     <ul class="collapse list-unstyled" id="clienteSubmenu">
                         <li>
-                            <a href="#">Listar Cliente</a>
+                            <a th:href="@{/cliente/list}">Listar Cliente</a>
                         </li>
                         <li>
-                            <a href="#">Nuevo Cliente</a>
+                            <a th:href="@{/cliente/new}">Nuevo Cliente</a>
                         </li>
                     </ul>
                 </li>
@@ -35,22 +35,22 @@
                     <a href="#productoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Producto</a>
                     <ul class="collapse list-unstyled" id="productoSubmenu">
                         <li>
-                            <a href="#">Listar Producto</a>
+                            <a th:href="@{/producto/new}">Listar Producto</a>
                         </li>
                         <li>
-                            <a href="#">Nuevo Producto</a>
+                            <a th:href="@{/producto/new}">Nuevo Producto</a>
                         </li>
                     </ul>
                 <li>
                     <a href="#categoriaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categoria</a>
                     <ul class="collapse list-unstyled" id="categoriaSubmenu">
                         <li>
-                            <a href="#">Listar Categoria</a>
+                            <a th:href="@{/categoria/new}">Nueva Categoria</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" >Pedido</a>
+                    <a th:href="@{/pedido/list}" >Pedido</a>
                 </li>
             </ul>
         </div>
@@ -111,8 +111,7 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>

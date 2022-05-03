@@ -24,10 +24,10 @@
           <a href="#clienteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cliente</a>
           <ul class="collapse list-unstyled" id="clienteSubmenu">
             <li>
-              <a href="#">Listar Cliente</a>
+              <a th:href="@{/cliente/list}">Listar Cliente</a>
             </li>
             <li>
-              <a href="#">Nuevo Cliente</a>
+              <a th:href="@{/cliente/new}">Nuevo Cliente</a>
             </li>
           </ul>
         </li>
@@ -35,22 +35,22 @@
           <a href="#productoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Producto</a>
           <ul class="collapse list-unstyled" id="productoSubmenu">
             <li>
-              <a href="#">Listar Producto</a>
+              <a th:href="@{/producto/list}">Listar Producto</a>
             </li>
             <li>
-              <a href="#">Nuevo Producto</a>
+              <a th:href="@{/categoria/new}">Nuevo Producto</a>
             </li>
           </ul>
         <li>
           <a href="#categoriaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categoria</a>
           <ul class="collapse list-unstyled" id="categoriaSubmenu">
             <li>
-              <a href="#">Listar Categoria</a>
+              <a th:href="@{/categoria/list}">Listar Categoria</a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#" >Pedido</a>
+          <a th:href="@{/pedido/list}" >Pedido</a>
         </li>
       </ul>
     </div>
@@ -65,12 +65,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
-           <!-- <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>-->
+            <span class="navbar-text">
+                               <ul class="navbar-nav me-auto">
+                              <li class="nav-item justify-content-end">
+                                <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+                              </li>
+                               </ul>
+            </span>
           </ul>
         </div>
         <span class="navbar-text">
@@ -87,19 +88,21 @@
       </div>
     </nav>
     <div class="row">
-      <div class="col-md-offset-2 col-md-8" style="margin:auto">
-  <form method="post" action="#" th:action="${categoriaForm.idCategoria != 0} ? @{/categoria/edit/submit} : @{/categoria/new/submit}"
+      <div class="content-main" >
+        <form method="post" action="#" th:action="${categoriaForm.idCategoria != 0} ? @{/categoria/edit/submit} : @{/categoria/new/submit}"
         th:object="${categoriaForm}">
-    <h1 th:text="${categoriaForm.idCategoria != 0} ? 'Editar categoria' : 'Nuevo categoria'">Nuevo categoria</h1>
-
+    <h1 th:text="${categoriaForm.idCategoria != 0} ? 'Editar categoria' : 'Nueva categoria'">Nueva categoria</h1>
+    <div class="form-group">
+      <label for="idCategoria"></label> <input type="hidden" class="form-control" id="idCategoria" th:field="*{idCategoria}" />
+    </div>
     <div class="form-group">
       <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" placeholder="5928553w" th:field="*{nombre}" required/>
     </div>
 
     <button type="submit" class="btn btn btn-primary">Enviar</button>
   </form>
-</div>
-</div>
+    </div>
+      </div>
 </div>
     </div>
 

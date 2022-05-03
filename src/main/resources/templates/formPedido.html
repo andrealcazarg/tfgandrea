@@ -1,67 +1,94 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8">
-  <title>Tienda Online</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/starter-template.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/loginregister2.css}"/>
 
 </head>
 
 <body>
 
-<!--Plantilla -->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
+<div class="wrapper d-flex align-items-stretch">
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mynavbar">
-        <ul class="navbar-nav me-auto">
-
-          <li class="nav-item">
-            <a class="nav-link" href="/cliente/list">Listar Cliente</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/producto/new">Nuevo Producto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/producto/list">Listar Producto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/categoria/new">Nueva Categoria</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/categoria/list">Listar Categoria</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pedido/list">Ver Pedidos</a>
+<nav id="sidebar">
+  <div class="p-4 pt-5">
+    <ul class="list-unstyled components mb-5">
+      <li class="active">
+        <a href="#clienteSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cliente</a>
+        <ul class="collapse list-unstyled" id="clienteSubmenu">
+          <li>
+            <a th:href="@{/cliente/list}">Listar Cliente</a>
           </li>
         </ul>
-        <span class="navbar-text">
-           <ul class="navbar-nav me-auto">
-          <li class="nav-item justify-content-end" >
-            <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+      </li>
+      <li>
+        <a href="#productoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Producto</a>
+        <ul class="collapse list-unstyled" id="productoSubmenu">
+          <li>
+            <a th:href="@{/producto/list}">Listar Producto</a>
           </li>
-           </ul>
-        </span>
+          <li>
+            <a th:href="@{/categoria/new}">Nuevo Producto</a>
+          </li>
+        </ul>
+      <li>
+        <a href="#categoriaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categoria</a>
+        <ul class="collapse list-unstyled" id="categoriaSubmenu">
+          <li>
+            <a th:href="@{/categoria/list}">Listar Categoria</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a th:href="@{/pedido/list}" >Pedido</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="content" class="nav-content">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto">
+                <span class="navbar-text">
+                               <ul class="navbar-nav me-auto">
+                              <li class="nav-item justify-content-end">
+                                <a class="nav-link" href="/admin/cerrar">Cerrar Sesion</a>
+                              </li>
+                               </ul>
+                </span>
+        </ul>
       </div>
+      <span class="navbar-text">
+
+           <ul class="navbar-nav me-auto">
+              <li class="nav-item justify-content-end">
+                <a class="nav-link" href="#page-home">
+                    <img th:src="@{/img/logo2.png}" class="logo">
+                </a>
+              </li>
+           </ul>
+
+        </span>
     </div>
   </nav>
-
-<!-- Formulario -->
-<div class="container">
-  <div class="starter-template">
-    <div class="row">
-      <div class="col-md-offset-2 col-md-8" style="margin:auto">
+  <div class="row">
+      <div class="content-main" >
         <form method="post" action="#" th:action="${pedidoForm.idPedido != 0} ? @{/pedido/edit/submit} : @{/pedido/new/submit}"
               th:object="${pedidoForm}">
-          <h1 th:text="${pedidoForm.idPedido != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
+          <h1 th:text="${pedidoForm.idPedido != 0} ? 'Editar cliente' : 'Nuevo Pedido'">Nuevo pedido</h1>
 
 
           <div class="form-group">
@@ -79,15 +106,13 @@
         </form>
       </div>
     </div>
-  </div>
 </div>
-<!-- /.container -->
+</div>>
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+<!--&lt;!&ndash;<script src="js/popper.js"></script>&ndash;&gt;-->
+<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
