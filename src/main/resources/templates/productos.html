@@ -70,10 +70,18 @@
                 <div class="small mb-3 fw-bold">Peso: 0.995kg</div>
                 <div class="d-flex">
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-dark flex-shrink-0 bg-warning text-dark" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>
+
+                    <div>
+                    <div class="btn-outline-dark mt-auto">
+                            <a class="btn btn-outline-dark bg-warning text-dark " th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}">
+                                <i class="bi-cart-fill me-1"></i>
+                                Agregar al carrito</a>
+
+                    </div>
+                    </div>
+                  <!--  <button class="btn btn-outline-dark flex-shrink-0 bg-warning text-dark "type="submit" th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}"  >
+                        <i class="bi-cart-fill me-1"></i>Add to cart
+                    </button>-->
                 </div>
             </div>
         </div>

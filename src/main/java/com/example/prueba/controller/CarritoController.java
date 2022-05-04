@@ -30,11 +30,17 @@ public class CarritoController {
         Producto producto=servicio.findById(idProducto);
         model.addAttribute("listaProductosTienda", producto) ;// inyecta el servicio gracias al @Autowired anterior
         model.addAttribute("categorias", service.findAll());
+        //Realizar la Linea de Pedido
         return "productos";
     }
-    @GetMapping({"/carrito{idProducto}"})
+    @GetMapping({"/carrito/{idProducto}"})
     public String carrito(Model model, @PathVariable int idProducto, LineaPedido lineaPedido){
-        model.addAttribute("listaProductosTienda", servicio.findAll()) ; // inyecta el servicio gracias al @Autowired anterior
-        return "tienda";
+        //cargar La linea de Pedido correspondiente al
+        Producto producto=servicio.findById(idProducto);
+        model.addAttribute("listaProductosCarrito", producto) ;// inyecta el servicio gracias al @Autowired anterior
+        model.addAttribute("categorias", service.findAll());
+       /* producto.getPrecio();
+        producto.getPeso();*/
+        return "carrito";
     }
 }

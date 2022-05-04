@@ -136,3 +136,7 @@ section{
     font-size: 1.2rem;
     font-weight: bold;
 }
+.btn-outline-dark:hover {
+    background-color: white;
+    color: black;
+}

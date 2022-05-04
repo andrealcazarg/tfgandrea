@@ -49,38 +49,35 @@
         </div>
     </div>
 </nav>
-<section class="py-5">
-    <div class="container">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5" th:each="producto : ${listaProductosTienda}">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder" th:text="${producto.nombre}"></h5>
-                            <!-- Product price-->
-                            <h5 class="fw-bolder2"  th:text="${producto.precio} + '€'"></h5>
-                        </div>
+<div class="row">
+    <div class="content-main">
+        <h1>Productos de la Empresa</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Peso</th>
+                <th>Disponible</th>
+                <th>Categoria</th>
 
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto" th:href="@{/productos/{idProducto}(idProducto=${producto.idProducto})}">Agregar al carrito</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row"  style="font-size: 35px">Si desea ir más allá de la comparación de las métricas de
-            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que Search Ads
-            360 haga la comparación por usted. La prueba del texto de anuncios puede determinar cuáles son los anuncios
+            </thead>
+            <tbody>
+            <tr th:each="producto : ${listaProductosCarrito}">
+                <td th:text="${listaProductosCarrito.idProducto}"></td>
+                <td th:text="${listaProductosCarrito.nombre}"></td>
+                <td th:text="${listaProductosCarrito.descripcion}"></td>
+                <td th:text="${listaProductosCarrito.precio } + '€' "></td>
+                <td th:text="${listaProductosCarrito.peso } + kg"></td>
+                <td th:text="${listaProductosCarrito.disponible }"></td>
+                <td th:text="${listaProductosCarrito.categoria.nombre}"></td>
 
-        </div>
+            </tr>
+            </tbody>
+        </table>
     </div>
-</section>
-<script th:src="@{/js/scroll.js}"></script>
+</div>
 </body>
 </html>

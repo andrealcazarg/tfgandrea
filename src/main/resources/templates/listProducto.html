@@ -106,6 +106,7 @@
                         <td th:text="${producto.descripcion}"></td>
                         <td th:text="${producto.precio } + '€' "></td>
                         <td th:text="${producto.peso } + kg"></td>
+                        <td th:text="${producto.disponible }"></td>
                         <td th:text="${producto.categoria.nombre}"></td>
 
                         <td><a th:href="@{/producto/edit/{id}(id=${producto.idProducto})}" class="btn btn-primaryList">Editar</a>
