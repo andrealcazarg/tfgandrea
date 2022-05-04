@@ -1,5 +1,7 @@
 /*para front tienda*/
 body{
+    font-family: Karla;
+    font-weight: 100;
 }
 .container-main{
     margin: 0;
@@ -18,6 +20,21 @@ nav{
     transition:0.6s;
     padding-right: 2%;
 }
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+    transition:0.6s;
+
+}
+.navbar-dark .navbar-toggler {
+    color: rgba(255, 255, 255, 0.55);
+    border-color: rgba(255, 255, 255, 0.1);
+
+}
+.collapse:not(.show) {
+    display: none;
+}
 nav.sticky{
     padding: 5px 100px;
     background-color: black;
@@ -25,15 +42,18 @@ nav.sticky{
 ul.navbar-nav{
     margin:auto;
 }
+
 .navbar-text a.nav-link-home {
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0rem;
+    padding-right: 0.5rem;
     color: orange;
     text-decoration: none;
 }
 .navbar-text a.nav-link-tienda {
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
+
     color: orange;
     text-decoration: none;
 }
@@ -42,10 +62,18 @@ ul.navbar-nav{
     padding:0;
 
 }
+.row-footer{
+    margin: 0;
+    padding-top:2%;
+    display: flex;
+}
 
 .logo {
     width: 100%;
     height: 60px;
+}
+.col-lg-9{
+    width:0;
 }
 .feature {
     display: inline-flex;
@@ -56,15 +84,22 @@ ul.navbar-nav{
     font-size: 2rem;
 }
 .svg-border-rounded svg {
-     position: absolute;
+    position: absolute;
      bottom: 0;
      width: 100%;
 }
+
 @media (min-width: 1200px){
     .svg-border-rounded svg {
         height: 3rem;
     }
+
 }
+.py-10 {
+    padding-top: 6rem!important;
+    padding-bottom: 6rem!important;
+}
+
 .bg-white{
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
@@ -76,11 +111,28 @@ ul.navbar-nav{
 section{
     position: relative;
 }
-.text-white{
+.text-white {
     --bs-text-opacity: 1;
-    color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+    color: rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important;
 }
 .text-light{
     --bs-text-opacity: 1;
     color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
+}
+
+.text-black {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-black-rgb),var(--bs-text-opacity))!important;
+
+}
+.footer-black{
+    color:white;
+ }
+.footer-brand{
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+.negrita{
+    font-size: 1.2rem;
+    font-weight: bold;
 }

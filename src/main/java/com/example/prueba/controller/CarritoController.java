@@ -16,13 +16,13 @@ public class CarritoController {
     private ProductoService servicio;
 
 
-    @GetMapping({"/carrito"})
+    @GetMapping({"/tienda/list"})
     public String listarUsu(Model model){
         model.addAttribute("listaProductosTienda", servicio.findAll()) ; // inyecta el servicio gracias al @Autowired anterior
         return "tienda";
     }
 
-    @GetMapping({"/carrito/list/{idProducto}"})
+    @GetMapping({"/tienda/list/{idProducto}"})
     public String listarDescripcion(Model model, @PathVariable Producto producto){
         model.addAttribute("listaProductosTienda", servicio.findAll()) ; // inyecta el servicio gracias al @Autowired anterior
         return "productos";
