@@ -42,7 +42,7 @@
                     <a class="nav-link" href="/nosotros">NOSOTROS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link-tienda" href="/carrito">TIENDA</a>
+                    <a class="nav-link-tienda" href="/tienda">TIENDA</a>
                 </li>
             </ul>
             </span>
@@ -68,7 +68,7 @@
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Agregar al carrito</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{/productos/{idProducto}(idProducto=${producto.idProducto})}">Agregar al carrito</a></div>
                     </div>
                 </div>
             </div>
