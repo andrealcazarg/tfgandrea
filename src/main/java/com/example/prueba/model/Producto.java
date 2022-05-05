@@ -19,6 +19,8 @@ public class Producto {
     @Column
     private boolean disponible;
 
+    @Column
+    private String imagen;
     @ManyToOne
     @JoinColumn(name="id_categoria", foreignKey = @ForeignKey(name = "Fk_categoria"))
     Categoria categoria;
@@ -26,13 +28,14 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, String descripcion, double precio, double peso, boolean disponible, Categoria categoria) {
+    public Producto(int idProducto, String nombre, String descripcion, double precio, double peso, boolean disponible, String imagen, Categoria categoria) {
         IdProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.peso = peso;
         this.disponible = disponible;
+        this.imagen = imagen;
         this.categoria = categoria;
     }
 
@@ -84,6 +87,14 @@ public class Producto {
         this.disponible = disponible;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
@@ -101,6 +112,7 @@ public class Producto {
                 ", precio=" + precio +
                 ", peso=" + peso +
                 ", disponible=" + disponible +
+                ", imagen='" + imagen + '\'' +
                 ", categoria=" + categoria +
                 '}';
     }

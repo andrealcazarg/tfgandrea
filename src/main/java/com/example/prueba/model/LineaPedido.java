@@ -11,7 +11,16 @@ public class LineaPedido {
     @Column
     private int cantidad;
     @Column
-    private double precio; //decimal (5,2)
+    private double subtotal; //decimal (5,2)
+
+    @Column
+    private double ptotal; //peso X cantidad
+
+    @Column
+    private double penvio; //el precio del envio
+
+    @Column
+    private double total;
 
     @ManyToOne
     @JoinColumn(name = "id_Pedido", foreignKey = @ForeignKey(name = "FK_pedido"))
@@ -23,10 +32,13 @@ public class LineaPedido {
     public LineaPedido() {
     }
 
-    public LineaPedido(int idLineaPedido, int cantidad, double precio, Pedido pedido, Producto producto) {
+    public LineaPedido(int idLineaPedido, int cantidad, double subtotal, double ptotal, double penvio, double total, Pedido pedido, Producto producto) {
         this.idLineaPedido = idLineaPedido;
         this.cantidad = cantidad;
-        this.precio = precio;
+        this.subtotal = subtotal;
+        this.ptotal = ptotal;
+        this.penvio = penvio;
+        this.total = total;
         this.pedido = pedido;
         this.producto = producto;
     }
@@ -47,12 +59,36 @@ public class LineaPedido {
         this.cantidad = cantidad;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getPtotal() {
+        return ptotal;
+    }
+
+    public void setPtotal(double ptotal) {
+        this.ptotal = ptotal;
+    }
+
+    public double getPenvio() {
+        return penvio;
+    }
+
+    public void setPenvio(double penvio) {
+        this.penvio = penvio;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public Pedido getPedido() {
@@ -76,7 +112,10 @@ public class LineaPedido {
         return "LineaPedido{" +
                 "idLineaPedido=" + idLineaPedido +
                 ", cantidad=" + cantidad +
-                ", precio=" + precio +
+                ", subtotal=" + subtotal +
+                ", ptotal=" + ptotal +
+                ", penvio=" + penvio +
+                ", total=" + total +
                 ", pedido=" + pedido +
                 ", producto=" + producto +
                 '}';
