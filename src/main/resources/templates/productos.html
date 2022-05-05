@@ -72,8 +72,8 @@
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
 
                     <div>
-                    <div class="btn-outline-dark mt-auto">
-                            <a class="btn btn-outline-dark bg-warning text-dark " th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}">
+                    <div id="container-btn" class="mt-auto">
+                            <a id="button-add" class="" th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}">
                                 <i class="bi-cart-fill me-1"></i>
                                 Agregar al carrito</a>
 
