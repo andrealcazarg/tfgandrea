@@ -42,4 +42,10 @@ public class LineaPedidoService implements ILineaPedidoService {
         repositorio.delete(u);
     }
 
+    public String obtenerID() {
+        return (String) repositorio.obtenerID();
+    }
+    public LineaPedido loginByProducto(Integer idProducto) {
+        return repositorio.loginByProducto(idProducto);
+    }
 }

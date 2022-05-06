@@ -12,5 +12,5 @@ public interface ILineaPedidoService {
     LineaPedido findById(Integer id);
     LineaPedido edit(LineaPedido u);
     void delete(LineaPedido u);
-
+    LineaPedido loginByProducto(Integer idProducto);
 }

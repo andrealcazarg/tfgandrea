@@ -1,5 +1,6 @@
 package com.example.prueba.controller;
 
+import com.example.prueba.constantes.Constante;
 import com.example.prueba.model.LineaPedido;
 import com.example.prueba.model.Pedido;
 import com.example.prueba.model.Producto;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDate;
+
 @Controller
 public class CarritoController {
 
@@ -24,6 +27,7 @@ public class CarritoController {
 
     @Autowired
     private LineaPedidoService serviceLineaPedido;
+
     @GetMapping({"/tienda"})
     public String listarUsu(Model model){
         model.addAttribute("listaProductosTienda", servicio.findAll()) ; // inyecta el servicio gracias al @Autowired anterior
@@ -31,17 +35,21 @@ public class CarritoController {
     }
 
     @GetMapping({"/productos/{idProducto}"})
-    public String listarDescripcion(Model model, @PathVariable int idProducto){
+    public String listarDescripcion(Model model, @PathVariable int idProducto, LineaPedido lineaPedido){
+
         Producto producto=servicio.findById(idProducto);
         model.addAttribute("listaProductosTienda", producto) ;// inyecta el servicio gracias al @Autowired anterior
+        lineaPedido.setProducto(producto);
         //Realizar la Linea de Pedido
-        LineaPedido linea = null;
+
+        LineaPedido linea =null;
+        linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto());
+
         Pedido pedido = null;
         if (pedido == null) {
-            pedido = new Pedido(1,"2022-02-21",false,pedido.getCliente());
+            pedido = new Pedido(String.valueOf(LocalDate.now()),false, Constante.SESSION_ID);
             servicePedido.add(pedido);
-            linea = new LineaPedido(1,linea.getCantidad(),linea.getSubtotal(),linea.getPtotal(),linea.getPenvio(),linea.getTotal(),linea.getPedido(),linea.getProducto());
-            serviceLineaPedido.add(linea);
+            serviceLineaPedido.add(lineaPedido);
 
         }
         return "productos";

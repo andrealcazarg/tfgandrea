@@ -9,5 +9,6 @@ import java.util.List;
 
 public class Constante {
     public static Usuario login = null;
+    public static String SESSION_ID = null;
    // public static List<Producto> carro = new ArrayList<>();
 }

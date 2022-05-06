@@ -1,5 +1,7 @@
 package com.example.prueba.model;
 
+import com.example.prueba.constantes.Constante;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,14 +18,22 @@ public class Pedido {
     @JoinColumn(name = "id_cliente", foreignKey = @ForeignKey(name = "FK_cliente"))
     Cliente cliente;
 
+    private String sesionID;
+
     public Pedido() {
     }
 
-    public Pedido(int idPedido, String fecha, boolean confir, Cliente cliente) {
+    public Pedido(int idPedido, String fecha, boolean confir, String sesionID) {
         this.idPedido = idPedido;
         this.fecha = fecha;
         this.confir = confir;
-        this.cliente = cliente;
+        this.sesionID = sesionID;
+    }
+
+    public Pedido(String fecha, boolean confir, String sesionID) {
+        this.fecha = fecha;
+        this.confir = confir;
+        this.sesionID = Constante.SESSION_ID;
     }
 
     public int getIdPedido() {
