@@ -12,9 +12,9 @@ public class Producto {
     private String nombre;
     @Column
     private String descripcion;
-    @Column
+    @Column(precision = 5, scale = 2)
     private double precio; //decimal (5,2)
-    @Column
+    @Column(precision = 5, scale = 2)
     private double peso;
     @Column
     private boolean disponible;

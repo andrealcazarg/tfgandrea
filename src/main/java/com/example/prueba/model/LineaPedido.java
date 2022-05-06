@@ -10,16 +10,15 @@ public class LineaPedido {
     private int idLineaPedido;
     @Column
     private int cantidad;
-    @Column
+    @Column(precision = 5, scale = 2)
     private double subtotal; //decimal (5,2)
-
-    @Column
+     @Column(precision = 5, scale = 2)
     private double ptotal; //peso X cantidad
 
-    @Column
+    @Column(precision = 5, scale = 2)
     private double penvio; //el precio del envio
 
-    @Column
+     @Column(precision = 5, scale = 2)
     private double total;
 
     @ManyToOne
