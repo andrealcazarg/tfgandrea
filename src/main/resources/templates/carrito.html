@@ -55,24 +55,24 @@
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
+                <th>ID Producto</th>
+                <th>ID Pedido</th>
+               <!-- <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Peso</th>
                 <th>Disponible</th>
-                <th>Categoria</th>
-
+                <th>Categoria</th>-->
+            </tr>
             </thead>
             <tbody>
-            <tr th:each="producto : ${listaProductosCarrito}">
-                <td th:text="${listaProductosCarrito.producto.idProducto}"></td>
-                <td th:text="${listaProductosCarrito.producto.nombre}"></td>
-                <td th:text="${listaProductosCarrito.producto.descripcion}"></td>
+            <tr th:each="lineas : ${lineasCarrito}">
+                <td th:text="${lineas.producto.getIdProducto()}"></td>
+                <td th:text="${lineas.getPedido().getIdPedido()}"></td>
+           <!--     <td th:text="${listaProductosCarrito.producto.descripcion}"></td>
                 <td th:text="${listaProductosCarrito.producto.precio } + '€' "></td>
                 <td th:text="${listaProductosCarrito.producto.peso } + kg"></td>
                 <td th:text="${listaProductosCarrito.producto.disponible }"></td>
-                <td th:text="${listaProductosCarrito.producto.categoria.nombre}"></td>
+                <td th:text="${listaProductosCarrito.producto.categoria.nombre}"></td>-->
 
             </tr>
             </tbody>

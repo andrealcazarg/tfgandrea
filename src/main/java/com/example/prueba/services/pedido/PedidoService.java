@@ -46,4 +46,10 @@ public class PedidoService implements IPedidoService {
         return  repositorio.obtenerID();
     }
 
+    @Override
+    public Pedido selectPedido(String sessionID) {
+        return repositorio.selectPedido(sessionID);
+    }
+
+
 }

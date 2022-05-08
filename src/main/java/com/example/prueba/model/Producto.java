@@ -1,5 +1,7 @@
 package com.example.prueba.model;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,9 @@ public class Producto {
     private boolean disponible;
 
     @Column
+    private int cantidad;
+    @Column
+    @Nullable
     private String imagen;
     @ManyToOne
     @JoinColumn(name="id_categoria", foreignKey = @ForeignKey(name = "Fk_categoria"))
@@ -28,13 +33,14 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, String descripcion, double precio, double peso, boolean disponible, String imagen, Categoria categoria) {
+    public Producto(int idProducto, String nombre, String descripcion, double precio, double peso, boolean disponible,int cantidad, String imagen, Categoria categoria) {
         IdProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.peso = peso;
         this.disponible = disponible;
+        this.cantidad = cantidad;
         this.imagen = imagen;
         this.categoria = categoria;
     }
@@ -87,6 +93,14 @@ public class Producto {
         this.disponible = disponible;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     public String getImagen() {
         return imagen;
     }
@@ -112,6 +126,7 @@ public class Producto {
                 ", precio=" + precio +
                 ", peso=" + peso +
                 ", disponible=" + disponible +
+                ", cantidad=" + cantidad +
                 ", imagen='" + imagen + '\'' +
                 ", categoria=" + categoria +
                 '}';

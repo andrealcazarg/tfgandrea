@@ -12,5 +12,5 @@ public interface IPedidoService {
     Pedido edit(Pedido u);
     void delete(Pedido u);
     String obtenerID();
-
+    Pedido selectPedido(String sessionID);
 }

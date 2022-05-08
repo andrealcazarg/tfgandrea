@@ -3,6 +3,7 @@ package com.example.prueba.model;
 import com.example.prueba.constantes.Constante;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Pedido {
@@ -18,22 +19,24 @@ public class Pedido {
     @JoinColumn(name = "id_cliente", foreignKey = @ForeignKey(name = "FK_cliente"))
     Cliente cliente;
 
+    @Column
     private String sesionID;
 
     public Pedido() {
     }
 
-    public Pedido(int idPedido, String fecha, boolean confir, String sesionID) {
+   /* public Pedido(int idPedido, String fecha, boolean confir, String sesionID) {
         this.idPedido = idPedido;
         this.fecha = fecha;
         this.confir = confir;
         this.sesionID = sesionID;
-    }
+    }*/
 
     public Pedido(String fecha, boolean confir, String sesionID) {
-        this.fecha = fecha;
+        this.fecha = String.valueOf(LocalDate.now());
         this.confir = confir;
-        this.sesionID = String.valueOf(Constante.SESSION_ID);
+        this.sesionID = Constante.SESSION_ID;
+
     }
 
     public int getIdPedido() {
@@ -68,6 +71,13 @@ public class Pedido {
         this.cliente = cliente;
     }
 
+    public String getSesionID() {
+        return sesionID;
+    }
+
+    public void setSesionID(String sesionID) {
+        this.sesionID = sesionID;
+    }
 
     @Override
     public String toString() {

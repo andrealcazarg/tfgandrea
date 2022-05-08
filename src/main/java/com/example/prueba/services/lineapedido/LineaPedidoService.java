@@ -44,8 +44,8 @@ public class LineaPedidoService implements ILineaPedidoService {
     }
 
     @Override
-    public LineaPedido selectLineas(Integer idPedido,String sessionID) {
-        return repositorio.selectLineas(idPedido, sessionID);
+    public List<LineaPedido> selectLineas(Integer idPedido) {
+        return repositorio.selectLineas(idPedido);
     }
 
 

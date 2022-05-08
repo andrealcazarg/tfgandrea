@@ -36,7 +36,7 @@ nav{
     display: none;
 }
 nav.sticky{
-    padding: 5px 100px;
+    padding: 5px 10px;
     background-color: black;
 }
 ul.navbar-nav{
@@ -52,8 +52,8 @@ ul.navbar-nav{
 }
 .navbar-text a.nav-link-tienda {
     display: block;
-    padding: 0.5rem 0.5rem;
-
+    padding: 0.5rem 0rem;
+    padding-right: 0.5rem;
     color: orange;
     text-decoration: none;
 }
@@ -95,8 +95,15 @@ ul.navbar-nav{
     }
 
 }
+@media (max-width: 750px) {
+    .row{
+        margin:8%;
+        padding:0;
+        margin-top: 20%;
+    }
+}
 .py-10 {
-    padding-top: 6rem!important;
+    padding-top: 3rem!important;
     padding-bottom: 6rem!important;
 }
 
@@ -162,4 +169,13 @@ section{
 
 #marco{
     border: 2px orange hidden;
+}
+#flecha{
+    padding:5px;
+    border: 2px solid #eeeeee;
+}
+#flecha:hover::after{
+    content: "→";
+    color:orange;
+    transition:color 300ms ease 0ms,background-color 300ms ease 0ms;
 }
