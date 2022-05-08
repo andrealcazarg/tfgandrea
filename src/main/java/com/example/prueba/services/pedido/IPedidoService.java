@@ -11,5 +11,6 @@ public interface IPedidoService {
     Pedido findById(Integer id);
     Pedido edit(Pedido u);
     void delete(Pedido u);
+    String obtenerID();
 
 }

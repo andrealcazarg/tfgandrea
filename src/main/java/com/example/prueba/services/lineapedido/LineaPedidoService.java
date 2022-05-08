@@ -8,6 +8,7 @@ import com.example.prueba.services.pedido.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.image.Kernel;
 import java.util.List;
 
 @Service
@@ -42,10 +43,13 @@ public class LineaPedidoService implements ILineaPedidoService {
         repositorio.delete(u);
     }
 
-    public String obtenerID() {
-        return (String) repositorio.obtenerID();
+    @Override
+    public LineaPedido selectLineas(Integer idPedido,String sessionID) {
+        return repositorio.selectLineas(idPedido, sessionID);
     }
-    public LineaPedido loginByProducto(Integer idProducto) {
-        return repositorio.loginByProducto(idProducto);
+
+
+    public LineaPedido loginByProducto(Integer idProducto, Integer idPedido) {
+        return repositorio.loginByProducto(idProducto, idPedido);
     }
 }

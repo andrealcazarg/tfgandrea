@@ -33,7 +33,7 @@ public class Pedido {
     public Pedido(String fecha, boolean confir, String sesionID) {
         this.fecha = fecha;
         this.confir = confir;
-        this.sesionID = Constante.SESSION_ID;
+        this.sesionID = String.valueOf(Constante.SESSION_ID);
     }
 
     public int getIdPedido() {

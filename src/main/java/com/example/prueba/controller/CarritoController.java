@@ -35,32 +35,42 @@ public class CarritoController {
     }
 
     @GetMapping({"/productos/{idProducto}"})
-    public String listarDescripcion(Model model, @PathVariable int idProducto, LineaPedido lineaPedido){
+    public String listarDescripcion(Model model, @PathVariable int idProducto){
+
 
         Producto producto=servicio.findById(idProducto);
         model.addAttribute("listaProductosTienda", producto) ;// inyecta el servicio gracias al @Autowired anterior
-        lineaPedido.setProducto(producto);
-        //Realizar la Linea de Pedido
-
-        LineaPedido linea =null;
-        linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto());
-
-        Pedido pedido = null;
-        if (pedido == null) {
-            pedido = new Pedido(String.valueOf(LocalDate.now()),false, Constante.SESSION_ID);
-            servicePedido.add(pedido);
-            serviceLineaPedido.add(lineaPedido);
-
-        }
         return "productos";
     }
     @GetMapping({"/carrito/{idProducto}"})
-    public String carrito(Model model, @PathVariable int idProducto, LineaPedido lineaPedido){
+    public String carrito(Model model, @PathVariable int idProducto, LineaPedido lineaPedido , Pedido pedido){
         //cargar La linea de Pedido correspondiente al
+        String session_id = servicePedido.obtenerID();
+        Constante.SESSION_ID = session_id;
+        pedido = new Pedido(String.valueOf(LocalDate.now()),false,Constante.SESSION_ID);
+        servicePedido.add(pedido);
+        if (pedido ==null ){
+
+
+        }else if(pedido != null && !pedido.isConfir()) {
+            servicePedido.edit(pedido);
+        }
+
         Producto producto=servicio.findById(idProducto);
+        lineaPedido.setProducto(producto);
+        lineaPedido.setPedido(pedido);
+
+        LineaPedido linea =null;
+        linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),pedido.getIdPedido());
+        serviceLineaPedido.add(lineaPedido);
+
+
         model.addAttribute("listaProductosCarrito", producto) ;// inyecta el servicio gracias al @Autowired anterior
-       /* producto.getPrecio();
-        producto.getPeso();*/
+        return "redirect:/tienda";
+    }
+    @GetMapping({"/carrito"})
+    public String verCarrito(Model model,Pedido pedido){
+        model.addAttribute("listaProductosCarrito",serviceLineaPedido.selectLineas(pedido.getIdPedido(), Constante.SESSION_ID));
         return "carrito";
     }
 }

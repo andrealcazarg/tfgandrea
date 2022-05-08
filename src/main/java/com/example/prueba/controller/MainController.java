@@ -21,8 +21,6 @@ public class MainController {
     public String welcome(Model model, HttpSession session) {
         @SuppressWarnings("unchecked")
         List<String> messages = (List<String>) session.getAttribute("MY_SESSION_MESSAGES");
-        String session_id = service.obtenerID();
-        session_id = Constante.SESSION_ID;
         if (messages == null) {
             messages = new ArrayList<>();
         }

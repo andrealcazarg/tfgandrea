@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface PedidoRepository extends JpaRepository<Pedido,Integer> {
 
-    @Query("SELECT u FROM LineaPedido u where u.producto.IdProducto = :idProducto")
-    LineaPedido selectLineas(@Param("idProducto") Integer idProducto);
+
+
+    @Query(value = "SELECT SESSION_ID FROM SPRING_SESSION", nativeQuery = true)
+    String obtenerID();
 }

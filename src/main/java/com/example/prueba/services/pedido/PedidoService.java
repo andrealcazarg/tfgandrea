@@ -41,4 +41,9 @@ public class PedidoService implements IPedidoService {
         repositorio.delete(u);
     }
 
+    @Override
+    public String obtenerID() {
+        return  repositorio.obtenerID();
+    }
+
 }

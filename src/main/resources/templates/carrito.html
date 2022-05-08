@@ -66,13 +66,13 @@
             </thead>
             <tbody>
             <tr th:each="producto : ${listaProductosCarrito}">
-                <td th:text="${listaProductosCarrito.idProducto}"></td>
-                <td th:text="${listaProductosCarrito.nombre}"></td>
-                <td th:text="${listaProductosCarrito.descripcion}"></td>
-                <td th:text="${listaProductosCarrito.precio } + '€' "></td>
-                <td th:text="${listaProductosCarrito.peso } + kg"></td>
-                <td th:text="${listaProductosCarrito.disponible }"></td>
-                <td th:text="${listaProductosCarrito.categoria.nombre}"></td>
+                <td th:text="${listaProductosCarrito.producto.idProducto}"></td>
+                <td th:text="${listaProductosCarrito.producto.nombre}"></td>
+                <td th:text="${listaProductosCarrito.producto.descripcion}"></td>
+                <td th:text="${listaProductosCarrito.producto.precio } + '€' "></td>
+                <td th:text="${listaProductosCarrito.producto.peso } + kg"></td>
+                <td th:text="${listaProductosCarrito.producto.disponible }"></td>
+                <td th:text="${listaProductosCarrito.producto.categoria.nombre}"></td>
 
             </tr>
             </tbody>

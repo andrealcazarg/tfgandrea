@@ -12,5 +12,7 @@ public interface ILineaPedidoService {
     LineaPedido findById(Integer id);
     LineaPedido edit(LineaPedido u);
     void delete(LineaPedido u);
-    LineaPedido loginByProducto(Integer idProducto);
+    LineaPedido selectLineas(Integer idPedido, String sessionID);
+    LineaPedido loginByProducto(Integer idProducto,Integer idPedido);
+
 }
