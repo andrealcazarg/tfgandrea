@@ -53,8 +53,9 @@
     <div class="content-main">
 
         <div class="left-area">
-        <h1> Productos de la Empresa</h1>
+
         <table class="table">
+            <h2> Productos de la Empresa</h2>
             <thead>
             <tr>
                 <th>Producto</th>
@@ -82,8 +83,8 @@
             </tbody>
         </table>
         <table class="table-envio">
+            <h1 class="derecha">Total Carrito</h1>
             <thead>
-                <h1 class="derecha">Total Carrito</h1>
             </thead>
             <tbody>
                 <tr th:each="lineas : ${lineasCarrito}">
@@ -97,14 +98,11 @@
         <div class="sidebar">
             <div class="categorias">
                 <h5>Categorias</h5>
-                    <table>
-                        <tbody>
-                            <tr th:each="lineas : ${lineasCarrito}">
-                                <td th:text="${lineas.getProducto().getCategoria().getNombre()}"></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                   <ul class="navbar-nav me-auto" th:each="lineasCategoria : ${listCategorias}">
+                    <li class="nav-item">
+                        <a class="nav-link" th:text="${lineasCategoria.getNombre()}" th:href="@{/categoria/{idCategoria}(idCategoria=${lineasCategoria.getIdCategoria()})}">BIENVENIDOS</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

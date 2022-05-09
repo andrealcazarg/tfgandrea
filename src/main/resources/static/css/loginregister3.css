@@ -129,6 +129,31 @@ ul.navbar-nav{
         margin-top: 20%;
     }
 }
+@media (max-width: 700px){
+    .sidebar{
+        margin-top: auto;
+        float: right;
+        width: auto;
+    }
+    .left-area{
+        margin-top:25%;
+        float:none;
+        width: auto;
+    }
+    .table-envio{
+        float:left;
+        margin-top: 5%;
+    }
+    .derecha{
+        text-align: left;
+    }
+    #row-carrito{
+        margin-top: 10%;
+    }
+    .categorias{
+
+    }
+}
 .py-10 {
     padding-top: 3rem!important;
     padding-bottom: 6rem!important;

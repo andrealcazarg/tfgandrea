@@ -42,4 +42,9 @@ public class ProductoService implements IProductoService {
         repositorio.delete(u);
     }
 
+    @Override
+    public List<Producto> selectProducto(Integer idCategoria) {
+        return repositorio.selectProducto(idCategoria);
+    }
+
 }

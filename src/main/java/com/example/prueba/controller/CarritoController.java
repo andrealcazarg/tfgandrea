@@ -1,9 +1,11 @@
 package com.example.prueba.controller;
 
 import com.example.prueba.constantes.Constante;
+import com.example.prueba.model.Categoria;
 import com.example.prueba.model.LineaPedido;
 import com.example.prueba.model.Pedido;
 import com.example.prueba.model.Producto;
+import com.example.prueba.services.categoria.CategoriaService;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
 import com.example.prueba.services.pedido.PedidoService;
 import com.example.prueba.services.producto.ProductoService;
@@ -27,12 +29,22 @@ public class CarritoController {
     private PedidoService servicePedido;
 
     @Autowired
+    private CategoriaService serviceCategoria;
+    @Autowired
     private LineaPedidoService serviceLineaPedido;
 
     @GetMapping({"/tienda"})
     public String listarUsu(Model model){
         model.addAttribute("listaProductosTienda", servicio.findAll()) ; // inyecta el servicio gracias al @Autowired anterior
         return "tienda";
+    }
+    @GetMapping("/categoria/{idCategoria}")
+    public String listarCategoria(Model model, @PathVariable int idCategoria){
+        Categoria categoria=serviceCategoria.findById(idCategoria);
+
+        model.addAttribute("listaProductos",servicio.selectProducto(idCategoria));
+        model.addAttribute("listaCategoria",categoria);
+        return "tiendaCategoria";
     }
 
     @GetMapping({"/productos/{idProducto}"})
@@ -87,6 +99,7 @@ public class CarritoController {
         Constante.SESSION_ID = session_id;
         pedido.setSesionID(session_id);*/
         model.addAttribute("lineasCarrito",serviceLineaPedido.findAll());
+        model.addAttribute("listCategorias",serviceCategoria.findAll());
         return "carrito";
     }
 }

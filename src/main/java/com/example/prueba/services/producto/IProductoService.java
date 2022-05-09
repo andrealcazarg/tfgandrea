@@ -11,5 +11,6 @@ public interface IProductoService {
     Producto findById(Integer id);
     Producto edit(Producto u);
     void delete(Producto u);
+    List<Producto> selectProducto(Integer idCategoria);
 
 }
