@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDate;
+import java.util.List;
+
 
 @Controller
 public class CarritoController {
@@ -77,28 +78,32 @@ public class CarritoController {
         lineaPedido.setProducto(producto);
         lineaPedido.setPedido(pedido1);
 
-        LineaPedido linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),pedido.getIdPedido());
+       // List<LineaPedido> linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),lineaPedido.getPedido().getIdPedido());
+        LineaPedido linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),pedido.getIdPedido()); //agregar una listA?????????
 
+        //siempre es null
         if (linea ==null ){
 
-            lineaPedido.setSubtotal(producto.getPrecio() * lineaPedido.getCantidad());
+            lineaPedido.setSubtotal(lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad());
             serviceLineaPedido.add(lineaPedido);
 
         }else {
-            linea.setCantidad(linea.getCantidad() + lineaPedido.getCantidad());
-             linea.setSubtotal(linea.getSubtotal() + (lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad()));
-            serviceLineaPedido.edit(linea);
+            //Arreglar
+           linea.setCantidad(linea.getCantidad() + lineaPedido.getCantidad());
+           linea.setSubtotal(linea.getSubtotal() + (lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad()));
+            serviceLineaPedido.edit(lineaPedido);
         }
-
-       // model.addAttribute("listaProductosCarrito", producto) ;// inyecta el servicio gracias al @Autowired anterior
         return "redirect:/tienda";
     }
     @GetMapping({"/carrito"})
-    public String verCarrito(Model model){
-       /* String session_id = servicePedido.obtenerID();
+    public String verCarrito(Model model, LineaPedido lineaPedido,Pedido pedido){
+        String session_id = servicePedido.obtenerID();
         Constante.SESSION_ID = session_id;
-        pedido.setSesionID(session_id);*/
-        model.addAttribute("lineasCarrito",serviceLineaPedido.findAll());
+        pedido.setSesionID(session_id);
+        Pedido pedido1 = servicePedido.selectPedido(Constante.SESSION_ID);
+        lineaPedido.setPedido(pedido1);
+       List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(pedido1.getIdPedido());
+        model.addAttribute("lineasCarrito",lineaPedido1);
         model.addAttribute("listCategorias",serviceCategoria.findAll());
         return "carrito";
     }
