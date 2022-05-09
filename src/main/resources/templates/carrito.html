@@ -49,34 +49,64 @@
         </div>
     </div>
 </nav>
-<div class="row">
+<div id="row-carrito" class="row">
     <div class="content-main">
-        <h1>Productos de la Empresa</h1>
+
+        <div class="left-area">
+        <h1> Productos de la Empresa</h1>
         <table class="table">
             <thead>
             <tr>
-                <th>ID Producto</th>
-                <th>ID Pedido</th>
-               <!-- <th>Descripcion</th>
+                <th>Producto</th>
+                <th>Nombre</th>
                 <th>Precio</th>
-                <th>Peso</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+               <!--
                 <th>Disponible</th>
                 <th>Categoria</th>-->
             </tr>
             </thead>
             <tbody>
             <tr th:each="lineas : ${lineasCarrito}">
-                <td th:text="${lineas.producto.getIdProducto()}"></td>
-                <td th:text="${lineas.getPedido().getIdPedido()}"></td>
-           <!--     <td th:text="${listaProductosCarrito.producto.descripcion}"></td>
-                <td th:text="${listaProductosCarrito.producto.precio } + '€' "></td>
-                <td th:text="${listaProductosCarrito.producto.peso } + kg"></td>
+                <td th:text="${lineas.producto.getImagen()}"></td>
+                <td th:text="${lineas.producto.nombre}"></td>
+                <td th:text="${lineas.producto.precio}"></td>
+               <td th:text="${lineas.getCantidad()}"></td>
+                <td th:text="${lineas.getSubtotal()} + '€' "></td>
+             <!--    <td th:text="${listaProductosCarrito.producto.peso } + kg"></td>
                 <td th:text="${listaProductosCarrito.producto.disponible }"></td>
                 <td th:text="${listaProductosCarrito.producto.categoria.nombre}"></td>-->
 
             </tr>
             </tbody>
         </table>
+        <table class="table-envio">
+            <thead>
+                <h1 class="derecha">Total Carrito</h1>
+            </thead>
+            <tbody>
+                <tr th:each="lineas : ${lineasCarrito}">
+                    <th>Subtotal</th>
+                        <td th:text="${lineas.getSubtotal()}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+        </div>
+        <div class="sidebar">
+            <div class="categorias">
+                <h5>Categorias</h5>
+                    <table>
+                        <tbody>
+                            <tr th:each="lineas : ${lineasCarrito}">
+                                <td th:text="${lineas.getProducto().getCategoria().getNombre()}"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+            </div>
+        </div>
     </div>
 </div>
 </body>

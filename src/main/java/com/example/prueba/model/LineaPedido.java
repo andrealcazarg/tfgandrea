@@ -31,6 +31,12 @@ public class LineaPedido {
     public LineaPedido() {
     }
 
+    public LineaPedido(int cantidad, Pedido pedido, Producto producto) {
+        this.cantidad = cantidad;
+        this.pedido = pedido;
+        this.producto = producto;
+    }
+
     public LineaPedido(int cantidad, double subtotal, double ptotal, double penvio, double total, Pedido pedido, Producto producto) {
         this.cantidad = cantidad;
         this.subtotal = subtotal;

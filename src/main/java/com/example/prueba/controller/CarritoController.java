@@ -4,7 +4,6 @@ import com.example.prueba.constantes.Constante;
 import com.example.prueba.model.LineaPedido;
 import com.example.prueba.model.Pedido;
 import com.example.prueba.model.Producto;
-import com.example.prueba.services.categoria.CategoriaService;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
 import com.example.prueba.services.pedido.PedidoService;
 import com.example.prueba.services.producto.ProductoService;
@@ -39,14 +38,16 @@ public class CarritoController {
     @GetMapping({"/productos/{idProducto}"})
     public String listarDescripcion(Model model, @PathVariable int idProducto){
 
+        LineaPedido lineaPedido= new LineaPedido();
 
         Producto producto=servicio.findById(idProducto);
+        model.addAttribute("lineaPedido", lineaPedido);
         model.addAttribute("listaProductosTienda", producto) ;// inyecta el servicio gracias al @Autowired anterior
 
         return "productos";
     }
-    @GetMapping({"/carrito/{idProducto}"})
-    public String carrito(@ModelAttribute("listaProductosCarrito") LineaPedido lineaPedido , Pedido pedido,  @PathVariable int idProducto){
+    @PostMapping({"/carrito/{idProducto}"})
+    public String carrito(@ModelAttribute("lineaPedido") LineaPedido lineaPedido , Pedido pedido,  @PathVariable int idProducto){
         //cargar La linea de Pedido correspondiente al
         String session_id = servicePedido.obtenerID();
         Constante.SESSION_ID = session_id;
@@ -67,9 +68,13 @@ public class CarritoController {
         LineaPedido linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),pedido.getIdPedido());
 
         if (linea ==null ){
+
+            lineaPedido.setSubtotal(producto.getPrecio() * lineaPedido.getCantidad());
             serviceLineaPedido.add(lineaPedido);
 
         }else {
+            linea.setCantidad(linea.getCantidad() + lineaPedido.getCantidad());
+             linea.setSubtotal(linea.getSubtotal() + (lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad()));
             serviceLineaPedido.edit(linea);
         }
 
@@ -77,7 +82,7 @@ public class CarritoController {
         return "redirect:/tienda";
     }
     @GetMapping({"/carrito"})
-    public String verCarrito(Model model, Pedido pedido){
+    public String verCarrito(Model model){
        /* String session_id = servicePedido.obtenerID();
         Constante.SESSION_ID = session_id;
         pedido.setSesionID(session_id);*/

@@ -67,6 +67,10 @@ ul.navbar-nav{
     padding-top:2%;
     display: flex;
 }
+#row-carrito{
+    margin:10%;
+    padding:0;
+}
 
 .logo {
     width: 100%;
@@ -74,6 +78,29 @@ ul.navbar-nav{
 }
 .col-lg-9{
     width:0;
+}
+.sidebar{
+    margin-top: 60px;
+    padding-left: 50px;
+    float: left;
+    width: 30%;
+}
+.derecha{
+    text-align: right;
+}
+
+.left-area{
+    float:left;
+    width: 70%;
+}
+.table{
+    margin-bottom: 30px;
+}
+.table-envio{
+
+    float: right;
+    border: 1px solid black;
+    width:30%;
 }
 .feature {
     display: inline-flex;

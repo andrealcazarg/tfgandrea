@@ -14,6 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
 </head>
+
 <body id="page-home">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="mainNav">
     <div class="container-fluid">
@@ -51,44 +52,51 @@
     </div>
 </nav>
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-1" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
-            <div class="col-md-6">
-                <h1 class="display-5 fw-bolder " th:text="${listaProductosTienda.getNombre()}"></h1>
-                <div class="fs-5 mb-3 text-warning fw-bold">
-                    <span th:text="${listaProductosTienda.getPrecio() + ' €'}" ></span>
-                </div>
-                <div class="small mb-3 fw-bold">Categoria: Botes de Miel</div>
-                <p class="lead">Descripcion:
-                    Miel Multiflora con Eucalipto. Muy energética,
-                    ayuda a combatir el cansancio. * Es rica en una gran variedad de vitaminas, minerales y
-                    antioxidantes, Es considerada multiflora porque no denomina ninguna especie floral
-                    por encima de las demás. contiene azúcares naturales como la fructosa, glucosa y
-                    sacarosa. Ideal para infecciones, gripes y resfriados, también combate la anemia.
-                  </p>
-                <div class="small mb-3 fw-bold" th:text="${listaProductosTienda.getPeso() + ' Kg'}"></div>
-                <div class="d-flex">
-                   <form method="post" action="#" th:action="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}" th:object="${listaProductosTienda}" >
-                    <input class="form-control text-center me-3" th:field="*{cantidad}" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                   </form>
-                    <div>
+    <form method="post" action="#" th:action="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}" th:object="${listaProductosTienda}" >
+        <form th:object="${lineaPedido}">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-1" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder " th:text="${listaProductosTienda.getNombre()}"></h1>
+                        <div class="fs-5 mb-3 text-warning fw-bold">
+                            <span th:text="${listaProductosTienda.getPrecio() + ' €'}" ></span>
+                        </div>
+                        <div class="small mb-3 fw-bold">Categoria: Botes de Miel</div>
+                        <p class="lead">Descripcion:
+                            Miel Multiflora con Eucalipto. Muy energética,
+                            ayuda a combatir el cansancio. * Es rica en una gran variedad de vitaminas, minerales y
+                            antioxidantes, Es considerada multiflora porque no denomina ninguna especie floral
+                            por encima de las demás. contiene azúcares naturales como la fructosa, glucosa y
+                            sacarosa. Ideal para infecciones, gripes y resfriados, también combate la anemia.
+                          </p>
+                        <div class="small mb-3 fw-bold" th:text="${listaProductosTienda.getPeso() + ' Kg'}"></div>
+                        <div class="d-flex">
+                            <input type="number" class="form-control text-center me-3" th:field="*{cantidad}" id="inputQuantity"/>
 
-                    <div id="container-btn" class="mt-auto">
-                            <a id="button-add" class="" th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}">
-                                <i class="bi-cart-fill me-1"></i>
-                                Agregar al carrito</a>
 
+                            <div id="container-btn" class="mt-auto">
+                                <button id="button-add" type="submit">
+                                    Agregar al carrito
+
+                                </button>
+                                    <!--<a id="button-add" class="" th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}">
+                                        <i class="bi-cart-fill me-1"></i>
+                                        Agregar al carrito</a>-->
+                        </div>
+                            <!--  <button class="btn btn-outline-dark flex-shrink-0 bg-warning text-dark "type="submit" th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}"  >
+                                  <i class="bi-cart-fill me-1"></i>Add to cart
+                              </button>-->
+                        </div>
                     </div>
-                    </div>
-                  <!--  <button class="btn btn-outline-dark flex-shrink-0 bg-warning text-dark "type="submit" th:href="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}"  >
-                        <i class="bi-cart-fill me-1"></i>Add to cart
-                    </button>-->
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
+    </form>
 </section>
+<script type="text/javascript">
+    alert("Producto añadido al carrito correctamente");
+</script>
 <script th:src="@{/js/scroll.js}"></script>
 </body>
 </html>
