@@ -24,7 +24,7 @@ import java.util.List;
 @Controller
 public class CarritoController {
 
-
+    public double totalCarrito=0;
     @Autowired
     private ProductoService servicio;
     @Autowired
@@ -88,20 +88,15 @@ public class CarritoController {
             lineaPedido.setSubtotal(lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad());
             lineaPedido.setPtotal(lineaPedido.getProducto().getPeso() * lineaPedido.getCantidad());
             calcularEnvio(lineaPedido);
-   /*         double res = lineaPedido.getSubtotal() +  lineaPedido.getPedido().getpEnvio();
+            /*double res = lineaPedido.getSubtotal() +  lineaPedido.getPedido().getpEnvio();
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(3);
             nf.format(res);
             lineaPedido.getPedido().setTotalPedido(res);*/
 
             serviceLineaPedido.add(lineaPedido);
-                /*    for (int i=0; i <lineaPedido1.size(); i++) {
-            lineaPedido.getPedido().setTotalPedido(lineaPedido1.get(i).getPedido().getTotalPedido());
-          //  totalCarrito = totalCarrito + lineaPedido1.get(i).getPedido().getTotalPedido();
-           // precioEnvio = lineaPedido1.get(i).getPenvio();
 
-        }*/
-            lineaPedido.getPedido().setTotalPedido(lineaPedido.getSubtotal() + lineaPedido.getPedido().getpEnvio());
+            recorrerCarrito(lineaPedido);
 
         }else {
             //Arreglar
@@ -111,17 +106,25 @@ public class CarritoController {
            linea.setSubtotal(linea.getSubtotal() + (lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad()));
             linea.setPtotal(linea.getPtotal() + (lineaPedido.getProducto().getPeso() * lineaPedido.getCantidad()));
             calcularEnvio(linea);
-            linea.getPedido().setTotalPedido( linea.getSubtotal() + lineaPedido.getPedido().getpEnvio());
-
-            //double res2 =linea.getSubtotal() + lineaPedido.getPedido().getpEnvio();
-           /* NumberFormat nf = NumberFormat.getInstance();
+           /*  double res2 =linea.getSubtotal() + lineaPedido.getPedido().getpEnvio();
+           NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(3);
             nf.format(res2);
             linea.getPedido().setTotalPedido(res2);*/
-
             serviceLineaPedido.edit(linea);
+            recorrerCarrito(linea);
         }
         return "redirect:/tienda";
+    }
+
+    public void recorrerCarrito(LineaPedido linea) {
+        List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(linea.getPedido().getIdPedido());
+
+        for (int i=0; i <lineaPedido1.size(); i++) {
+            //lineaPedido.getPedido().setTotalPedido(lineaPedido1.get(i).getSubtotal() + lineaPedido1.get(i).getPedido().getpEnvio());
+            totalCarrito = totalCarrito + lineaPedido1.get(i).getSubtotal();
+        }
+        linea.getPedido().setTotalPedido(totalCarrito + linea.getPedido().getpEnvio());
     }
 
     public void calcularEnvio(@ModelAttribute("lineaPedido") LineaPedido linea) {
