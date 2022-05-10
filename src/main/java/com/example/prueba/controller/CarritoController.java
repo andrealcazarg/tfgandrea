@@ -61,7 +61,6 @@ public class CarritoController {
     }
     @PostMapping({"/carrito/{idProducto}"})
     public String carrito(@ModelAttribute("lineaPedido") LineaPedido lineaPedido , Pedido pedido,  @PathVariable int idProducto){
-        //cargar La linea de Pedido correspondiente al
         String session_id = servicePedido.obtenerID();
         Constante.SESSION_ID = session_id;
         pedido.setSesionID(session_id);
@@ -69,32 +68,56 @@ public class CarritoController {
 
        if (pedido1 ==null){
            servicePedido.add(pedido);
-        }else {
-            servicePedido.edit(pedido1);
-        }
+           lineaPedido.setPedido(pedido);
+       }else {
+           servicePedido.edit(pedido1);
+           lineaPedido.setPedido(pedido1);
+       }
 
         Producto producto=servicio.findById(idProducto);
-
         lineaPedido.setProducto(producto);
-        lineaPedido.setPedido(pedido1);
 
        // List<LineaPedido> linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),lineaPedido.getPedido().getIdPedido());
-        LineaPedido linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto(),pedido.getIdPedido()); //agregar una listA?????????
+        LineaPedido linea =serviceLineaPedido.loginByProducto(lineaPedido.getProducto().getIdProducto()); //agregar una listA?????????
 
         //siempre es null
         if (linea ==null ){
 
             lineaPedido.setSubtotal(lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad());
+            lineaPedido.setPtotal(lineaPedido.getProducto().getPeso() * lineaPedido.getCantidad());
+            calcularEnvio(lineaPedido);
+            lineaPedido.getPedido().setTotalPedido(lineaPedido.getSubtotal() +  lineaPedido.getPedido().getpEnvio());
+         //   lineaPedido.setTotal(lineaPedido.getSubtotal() + pEnvio);
             serviceLineaPedido.add(lineaPedido);
 
         }else {
             //Arreglar
+
            linea.setCantidad(linea.getCantidad() + lineaPedido.getCantidad());
+
            linea.setSubtotal(linea.getSubtotal() + (lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad()));
-            serviceLineaPedido.edit(lineaPedido);
+            linea.setPtotal(linea.getPtotal() + (lineaPedido.getProducto().getPeso() * lineaPedido.getCantidad()));
+            calcularEnvio(linea);
+            linea.getPedido().setTotalPedido(linea.getSubtotal() + linea.getPedido().getpEnvio());
+          //  linea.setTotal(linea.getSubtotal() + pEnvio);
+            serviceLineaPedido.edit(linea);
         }
         return "redirect:/tienda";
     }
+
+    public void calcularEnvio(@ModelAttribute("lineaPedido") LineaPedido linea) {
+
+        if (linea.getPtotal() <3){
+            linea.getPedido().setpEnvio(8);
+        }else if (linea.getPtotal() >=3 && linea.getPtotal() <6){
+            linea.getPedido().setpEnvio(10);
+        }else if (linea.getPtotal() >=6 && linea.getPtotal() <10){
+            linea.getPedido().setpEnvio(12);
+        }else{
+            linea.getPedido().setpEnvio(18);
+        }
+    }
+
     @GetMapping({"/carrito"})
     public String verCarrito(Model model, LineaPedido lineaPedido,Pedido pedido){
         String session_id = servicePedido.obtenerID();
@@ -102,9 +125,23 @@ public class CarritoController {
         pedido.setSesionID(session_id);
         Pedido pedido1 = servicePedido.selectPedido(Constante.SESSION_ID);
         lineaPedido.setPedido(pedido1);
+
        List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(pedido1.getIdPedido());
+        //for (LineaPedido i : lineaPedido1) totalCarrito = totalCarrito + i.getTotal();
+    /*    for (int i=0; i <lineaPedido1.size(); i++) {
+            lineaPedido.getPedido().setTotalPedido(lineaPedido1.get(i).getPedido().getTotalPedido());
+          //  totalCarrito = totalCarrito + lineaPedido1.get(i).getPedido().getTotalPedido();
+           // precioEnvio = lineaPedido1.get(i).getPenvio();
+
+        }*/
+        //totalCarrito = lineaPedido.getPedido().getTotalPedido();
         model.addAttribute("lineasCarrito",lineaPedido1);
         model.addAttribute("listCategorias",serviceCategoria.findAll());
+        model.addAttribute("totalCarrito",lineaPedido.getPedido().getTotalPedido());
+        model.addAttribute("precioEnvio", pedido1.getpEnvio());
         return "carrito";
     }
+/*    public calcularEnvio(){
+
+    }*/
 }

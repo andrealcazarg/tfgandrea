@@ -23,6 +23,7 @@ nav{
 .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
+    justify-content: right;
     align-items: center;
     transition:0.6s;
 

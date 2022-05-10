@@ -18,9 +18,14 @@ public class Pedido {
     @ManyToOne()
     @JoinColumn(name = "id_cliente", foreignKey = @ForeignKey(name = "FK_cliente"))
     Cliente cliente;
-
     @Column
     private String sesionID;
+
+    @Column(precision = 5, scale = 2)
+    private double totalPedido;
+
+    @Column(precision = 5, scale = 2)
+    private double pEnvio;
 
     public Pedido() {
     }
@@ -32,11 +37,12 @@ public class Pedido {
         this.sesionID = sesionID;
     }*/
 
-    public Pedido(String fecha, boolean confir, String sesionID) {
+    public Pedido(String fecha, boolean confir, String sesionID,double totalPedido, double pEnvio) {
         this.fecha = String.valueOf(LocalDate.now());
         this.confir = confir;
         this.sesionID = Constante.SESSION_ID;
-
+        this.totalPedido = totalPedido;
+        this.pEnvio = pEnvio;
     }
 
     public int getIdPedido() {
@@ -74,9 +80,23 @@ public class Pedido {
     public String getSesionID() {
         return sesionID;
     }
-
     public void setSesionID(String sesionID) {
         this.sesionID = sesionID;
+    }
+
+    public double getTotalPedido() {
+        return totalPedido;
+    }
+    public void setTotalPedido(double totalPedido) {
+        this.totalPedido = totalPedido;
+    }
+
+    public double getpEnvio() {
+        return pEnvio;
+    }
+
+    public void setpEnvio(double pEnvio) {
+        this.pEnvio = pEnvio;
     }
 
     @Override
@@ -86,6 +106,9 @@ public class Pedido {
                 ", fecha='" + fecha + '\'' +
                 ", confir=" + confir +
                 ", cliente=" + cliente +
+                ", sesionID='" + sesionID + '\'' +
+                ", totalPedido=" + totalPedido +
+                ", pEnvio=" + pEnvio +
                 '}';
     }
 }

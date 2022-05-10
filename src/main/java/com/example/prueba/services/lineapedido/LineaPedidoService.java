@@ -49,7 +49,7 @@ public class LineaPedidoService implements ILineaPedidoService {
     }
 
 
-    public LineaPedido loginByProducto(Integer idProducto, Integer idPedido) {
-        return repositorio.loginByProducto(idProducto, idPedido);
+    public LineaPedido loginByProducto(Integer idProducto) {
+        return repositorio.loginByProducto(idProducto);
     }
 }

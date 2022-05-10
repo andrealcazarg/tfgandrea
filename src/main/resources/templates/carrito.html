@@ -31,8 +31,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse " id="navbarResponsive">
-            <ul class="navbar-nav"></ul>
+        <div class="collapse navbar-collapse justify-content-right" id="navbarResponsive">
             <span class="navbar-text">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
@@ -63,36 +62,39 @@
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Subtotal</th>
-               <!--
-                <th>Disponible</th>
-                <th>Categoria</th>-->
+                <th>Total Peso</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="lineas : ${lineasCarrito}">
                 <td th:text="${lineas.producto.getImagen()}"></td>
                 <td th:text="${lineas.producto.nombre}"></td>
-                <td th:text="${lineas.producto.precio}"></td>
-               <td th:text="${lineas.getCantidad()}"></td>
-                <td th:text="${lineas.getSubtotal()} + '€' "></td>
-             <!--    <td th:text="${listaProductosCarrito.producto.peso } + kg"></td>
-                <td th:text="${listaProductosCarrito.producto.disponible }"></td>
-                <td th:text="${listaProductosCarrito.producto.categoria.nombre}"></td>-->
+                <td th:text="${lineas.producto.precio} + ' €'"></td>
+               <td class="text-center" th:text="${lineas.getCantidad()}"></td>
+                <td th:text="${lineas.getSubtotal()} + ' €' "></td>
+                <td th:text="${lineas.getPtotal()} + ' kg' "></td>
 
             </tr>
             </tbody>
         </table>
         <table class="table-envio">
             <h1 class="derecha">Total Carrito</h1>
-            <thead>
-            </thead>
-            <tbody>
-                <tr th:each="lineas : ${lineasCarrito}">
-                    <th>Subtotal</th>
-                        <td th:text="${lineas.getSubtotal()}"></td>
+            <!--<thead th:each="total : ${lineasCarrito}">
+            <tr>
+                <th>Subtotal</th>
+                <td th:text="${total.getSubtotal()} + ' €'"></td>
+            </tr>
+            </thead>-->
+            <tbody  th:each="total : ${totalCarrito}">
+              <tr>
+                    <th>Envio</th>
+                    <td th:text="${precioEnvio} + ' €'"></td>
+                </tr>
+                 <tr>
+                    <th>Total Pedido</th>
+                    <td th:text="${totalCarrito} + ' €'"></td>
                 </tr>
             </tbody>
-
         </table>
         </div>
         <div class="sidebar">

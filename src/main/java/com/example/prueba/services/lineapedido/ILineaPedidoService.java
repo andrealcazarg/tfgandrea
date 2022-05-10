@@ -13,6 +13,6 @@ public interface ILineaPedidoService {
     LineaPedido edit(LineaPedido u);
     void delete(LineaPedido u);
     List<LineaPedido> selectLineas(Integer idPedido);
-    LineaPedido loginByProducto(Integer idProducto,Integer idPedido);
+    LineaPedido loginByProducto(Integer idProducto);
 
 }
