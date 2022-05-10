@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 
@@ -72,6 +73,7 @@ public class CarritoController {
        }else {
            servicePedido.edit(pedido1);
            lineaPedido.setPedido(pedido1);
+
        }
 
         Producto producto=servicio.findById(idProducto);
@@ -86,9 +88,20 @@ public class CarritoController {
             lineaPedido.setSubtotal(lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad());
             lineaPedido.setPtotal(lineaPedido.getProducto().getPeso() * lineaPedido.getCantidad());
             calcularEnvio(lineaPedido);
-            lineaPedido.getPedido().setTotalPedido(lineaPedido.getSubtotal() +  lineaPedido.getPedido().getpEnvio());
-         //   lineaPedido.setTotal(lineaPedido.getSubtotal() + pEnvio);
+   /*         double res = lineaPedido.getSubtotal() +  lineaPedido.getPedido().getpEnvio();
+            NumberFormat nf = NumberFormat.getInstance();
+            nf.setMaximumFractionDigits(3);
+            nf.format(res);
+            lineaPedido.getPedido().setTotalPedido(res);*/
+
             serviceLineaPedido.add(lineaPedido);
+                /*    for (int i=0; i <lineaPedido1.size(); i++) {
+            lineaPedido.getPedido().setTotalPedido(lineaPedido1.get(i).getPedido().getTotalPedido());
+          //  totalCarrito = totalCarrito + lineaPedido1.get(i).getPedido().getTotalPedido();
+           // precioEnvio = lineaPedido1.get(i).getPenvio();
+
+        }*/
+            lineaPedido.getPedido().setTotalPedido(lineaPedido.getSubtotal() + lineaPedido.getPedido().getpEnvio());
 
         }else {
             //Arreglar
@@ -98,8 +111,14 @@ public class CarritoController {
            linea.setSubtotal(linea.getSubtotal() + (lineaPedido.getProducto().getPrecio() * lineaPedido.getCantidad()));
             linea.setPtotal(linea.getPtotal() + (lineaPedido.getProducto().getPeso() * lineaPedido.getCantidad()));
             calcularEnvio(linea);
-            linea.getPedido().setTotalPedido(linea.getSubtotal() + linea.getPedido().getpEnvio());
-          //  linea.setTotal(linea.getSubtotal() + pEnvio);
+            linea.getPedido().setTotalPedido( linea.getSubtotal() + lineaPedido.getPedido().getpEnvio());
+
+            //double res2 =linea.getSubtotal() + lineaPedido.getPedido().getpEnvio();
+           /* NumberFormat nf = NumberFormat.getInstance();
+            nf.setMaximumFractionDigits(3);
+            nf.format(res2);
+            linea.getPedido().setTotalPedido(res2);*/
+
             serviceLineaPedido.edit(linea);
         }
         return "redirect:/tienda";
