@@ -40,7 +40,7 @@ public class Pedido {
     public Pedido(String fecha, boolean confir, String sesionID,double totalPedido, double pEnvio) {
         this.fecha = String.valueOf(LocalDate.now());
         this.confir = confir;
-        this.sesionID = Constante.SESSION_ID;
+        this.sesionID = sesionID;
         this.totalPedido = totalPedido;
         this.pEnvio = pEnvio;
     }

@@ -65,12 +65,15 @@ ul.navbar-nav{
 }
 .row-footer{
     margin: 0;
-    padding-top:2%;
+    padding-top:4em;
     display: flex;
 }
 #row-carrito{
     margin:10%;
     padding:0;
+}
+#row-productos{
+    width: max-content;
 }
 
 .logo {
@@ -182,14 +185,16 @@ section{
 
 .text-black {
     --bs-text-opacity: 1;
-    color: rgba(var(--bs-black-rgb),var(--bs-text-opacity))!important;
+    color: rgba(var(--bs-gray-900),var(--bs-text-opacity))!important;
 
 }
 .footer-black{
+    background-color: #212529;
     color:white;
  }
 .footer-brand{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
     margin-bottom: 0.25rem;
 }
 .negrita{
@@ -232,3 +237,27 @@ section{
     color:orange;
     transition:color 300ms ease 0ms,background-color 300ms ease 0ms;
 }
+a{
+    color:gray;
+    text-decoration: none;
+}
+a:hover{
+    color:orange;
+    text-decoration: none;
+}
+.icon-list-social-link{
+    margin-right: 0.5rem;
+}
+.bi-instagram{
+    font-size: 1.2em;
+}
+.bi-facebook{
+    font-size: 1.2em;
+}
+#right{
+    text-align: right;
+}
+.iconos{
+
+}
+
