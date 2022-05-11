@@ -228,11 +228,12 @@ section{
 #marco{
     border: 2px orange hidden;
 }
-#flecha{
-    padding:5px;
-    border: 2px solid #eeeeee;
+.flecha{
+    /*padding:5px;*/
+    /*border: 2px solid #eeeeee;*/
 }
-#flecha:hover::after{
+
+.flecha:hover::after{
     content: "→";
     color:orange;
     transition:color 300ms ease 0ms,background-color 300ms ease 0ms;
@@ -253,6 +254,12 @@ a:hover{
 }
 .bi-facebook{
     font-size: 1.2em;
+}
+.bi-whatsapp{
+    font-size:1.4em;
+}
+.bi-whatsapp:hover{
+    color:green;
 }
 #right{
     text-align: right;
