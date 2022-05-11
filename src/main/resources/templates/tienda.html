@@ -55,9 +55,9 @@
 </nav>
 <section class="py-5">
     <div class="container">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5" th:each="producto : ${listaProductosTienda}">
-                <div id="marco" class="card h-40 mb-2 ">
+        <div class="row-tienda gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5 p-3" th:each="producto : ${listaProductosTienda}">
+                <div id="marco" class="card h-40 mb-2">
                     <!-- Product image-->
                     <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
 
@@ -81,10 +81,8 @@
                 </div>
             </div>
         </div>
-        <div class="row"  style="font-size: 35px">Si desea ir más allá de la comparación de las métricas de
-            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que Search Ads
-            360 haga la comparación por usted. La prueba del texto de anuncios puede determinar cuáles son los anuncios
-
+        <div id="row-tienda"  style="font-size: 35px">Si desea ir más allá de la comparación de las métricas de
+            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que
         </div>
     </div>
 </section>

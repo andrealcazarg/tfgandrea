@@ -59,9 +59,12 @@ ul.navbar-nav{
     text-decoration: none;
 }
 .row{
-    margin:8%;
+    margin:5%;
     padding:0;
-
+}
+.row-tienda{
+    margin-top: 8%;
+    display:flex;
 }
 .row-footer{
     margin: 0;
@@ -75,7 +78,9 @@ ul.navbar-nav{
 #row-productos{
     width: max-content;
 }
-
+#row-tienda{
+    margin: 1%;
+}
 .logo {
     width: 100%;
     height: 65px;
@@ -224,9 +229,13 @@ section{
     color: black;
     border:1px solid black;
 }
+.btn-outline-dark:hover{
+    color:black;
+    background-color: orange;
+}
 
 #marco{
-    border: 2px orange hidden;
+    border: 2px lightsalmon outset;
 }
 .flecha{
     /*padding:5px;*/

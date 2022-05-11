@@ -54,8 +54,8 @@
 </nav>
 <section class="py-5">
     <div class="container">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5" th:each="listaProducto : ${listaProductos}">
+        <div class="row-tienda gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5 p-3" th:each="listaProducto : ${listaProductos}">
                 <div id="marco" class="card h-40 mb-2 ">
                     <!-- Product image-->
                     <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
@@ -80,13 +80,58 @@
                 </div>
             </div>
         </div>
-        <div class="row"  style="font-size: 35px">Si desea ir más allá de la comparación de las métricas de
-            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que Search Ads
-            360 haga la comparación por usted. La prueba del texto de anuncios puede determinar cuáles son los anuncios
+        <div id="row-tienda"  style="font-size: 35px">Si desea ir más allá de la comparación de las métricas de
+            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que
 
         </div>
     </div>
 </section>
+<footer class="footer pt-10 mt-auto footer-black">
+    <div class="container">
+        <div class="row-footer">
+            <div class="col-lg-3">
+                <div class="footer-brand"> Miel Cuarta Generacion</div>
+                <div class="mb-2 fw-light ">Siguenos en: </div>
+                <div class="icon-list-social mb-5">
+                    <a class="icon-list-social-link" href="https://www.instagram.com/miel_cuartageneracion/">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a class="icon-list-social-link" href="https://www.facebook.com/MielCuartaGeneracion/">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <div class="fw-light ">Puedes realizar tu pedido en: </div>
+                    <a class="icon-list-social-link" href="https://api.whatsapp.com/send?phone=34606900157&text=">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row" id="row-productos" >
+                    <div class="col-lg-5">
+                        <div class="footer-brand">Producto</div>
+                        <div class="mb-3"> </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">De 0 a 2.999 kg de peso neto 5,99 € de envío</li>
+                            <li class="mb-2">De 3 kg a 5.999 kg de peso neto 7,99 € de envío</li>
+                            <li class="mb-2">De 6 kg a 9.999 kg de peso neto 9,99 € de envío</li>
+                            <li class="mb-2">De 10 kg a 18.999 kg netos de peso 14,99 € de envío</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 mb-5">
+                        <div class="footer-brand">LOS PEDIDOS TAMBIEN PODRÁN REALIZARSE MEDIANTE TELÉFONO</div>
+                        <div class="mb-3">Horario: Mañanas : De 9 a 14 h Tardes: De 16 a 20 h de Lunes a Sábado. </div>
+                        <div class="mb-2">
+                            <img class="iconos" src="https://mielcuartageneracion.es/wp-content/uploads/2021/11/logo-alimenta-300x100.png">
+                            <img class="iconos" src="https://mielcuartageneracion.es/wp-content/uploads/2021/11/logo-biosfera-300x152.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="marca bg-black text-white h-25">Diseño creado por : Andrea Alcazar Galan</div>
 <script th:src="@{/js/scroll.js}"></script>
 </body>
 </html>

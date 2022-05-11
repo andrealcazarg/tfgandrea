@@ -46,7 +46,7 @@ a{
 .btn-primaryList{
     margin:auto;
     background: #007bff;
-    border-color: #f8b739;
+    /*border-color: #f8b739;*/
     color: #fff;
 }
 .btn-primaryList:hover{
