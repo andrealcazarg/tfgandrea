@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/loginregister2.css}"/>
+
+</head>
+<body>
+<div class="row">
+    <div class="content-main">
+        <form method="post" action="#"
+              th:action="${clienteForm.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/new/submit}"
+              th:object="${clienteForm}">
+            <h1 th:text="${clienteForm.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
+
+            <div class="agrupacion">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre"
+                                                              placeholder="5928553w" th:field="*{nombre}" required/>
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos</label> <input type="text" class="form-control" id="apellidos"
+                                                                    placeholder="andrea" th:field="*{apellidos}"
+                                                                    required/>
+                </div>
+                <div class="form-group">
+                    <label for="nombre Empresa">Nombre Empresa</label> <input type="text" class="form-control"
+                                                                              id="nombre Empresa"
+                                                                              placeholder="c/los huertos"
+                                                                              th:field="*{nombreEmpresa}"/>
+                </div>
+                <div class="form-group">
+                    <label for="pais">Pais</label> <input type="email" class="form-control" id="pais"
+                                                          placeholder="España" th:field="*{pais}" readonly/>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Direccion</label> <input type="text" class="form-control" id="direccion"
+                                                                    placeholder="usu" th:field="*{direccion}" required/>
+                </div>
+                <div class="form-group">
+                    <label for="apartamento">Apartamento</label> <input type="text" class="form-control"
+                                                                        id="apartamento" placeholder="1234"
+                                                                        th:field="*{apartamento}" required/>
+                </div>
+                <div class="form-group">
+                    <label for="provincia">Provincia</label> <select
+                        th:field="*{provincia}" class="form-control" id="provincia">
+                    <option value="-1">---</option>
+                    <option th:each="provincia : ${provincias}"
+                            th:value="${provincia.idProvincia}" th:text="${provincia.nombre}">Provincia
+                    </option>
+                </select>
+                </div>
+                <div class="form-group">
+                    <label for="localidad">Localidad</label> <input type="text" class="form-control" id="localidad"
+                                                                    placeholder="6535353" th:field="*{localidad}"
+                                                                    required/>
+                    <div class="form-group">
+                        <label for="codigo Postal">Codigo Postal</label> <input type="text" class="form-control"
+                                                                                id="codigo postal" placeholder="6535353"
+                                                                                th:field="*{codigoPostal}" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Telefono</label> <input type="text" class="form-control" id="telefono"
+                                                                  placeholder="6535353" th:field="*{telefono}"
+                                                                  required/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label> <input type="email" class="form-control" id="email"
+                                                            placeholder="6535353" th:field="*{email}" required/>
+                </div>
+            </div>
+            <div class="agrupacion-pago">
+                <table class="table-envio">
+                    <h1>Total Carrito</h1>
+                    <tbody th:each="lineas : ${lineasCarrito}">
+
+
+                    <tr>
+                        <th>Producto</th>
+                        <td th:text="${lineas.getProducto().getNombre()}"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Subtotal</th>
+                        <td th:text="${lineas.getSubtotal()}"></td>
+                    </tr>
+
+                    </tbody>
+                    <tfoot th:each="total : ${totalCarrito}">
+                        <tr>
+                            <th>Envio</th>
+                            <td th:text="${precioEnvio} + ' €'"></td>
+                        </tr>
+                        <tr>
+                            <th>Total Pedido</th>
+                            <td th:text="${totalCarrito} + ' €'"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <button type="submit" class="btn btn btn-primary" id="boton-naranja">Enviar</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

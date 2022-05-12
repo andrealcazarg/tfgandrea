@@ -122,6 +122,10 @@ ul.navbar-nav{
     float: left;
     width: 30%;
 }
+.pagar{
+    margin-top: 1em;
+    width: fit-content;
+}
 #nav-sidebar{
     text-decoration: none;
     color:black;
@@ -137,9 +141,7 @@ ul.navbar-nav{
     margin: auto;
     padding-left: 1em;
 }
-.derecha{
-    text-align: right;
-}
+
 
 .left-area{
     float:left;
@@ -150,7 +152,7 @@ ul.navbar-nav{
 }
 .table-envio{
 
-    float: right;
+
     border: 1px solid black;
     width:30%;
 }

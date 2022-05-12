@@ -1,14 +1,13 @@
 package com.example.prueba.controller;
 
 import com.example.prueba.constantes.Constante;
-import com.example.prueba.model.Categoria;
-import com.example.prueba.model.LineaPedido;
-import com.example.prueba.model.Pedido;
-import com.example.prueba.model.Producto;
+import com.example.prueba.model.*;
 import com.example.prueba.services.categoria.CategoriaService;
+import com.example.prueba.services.cliente.ClienteService;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
 import com.example.prueba.services.pedido.PedidoService;
 import com.example.prueba.services.producto.ProductoService;
+import com.example.prueba.services.provincia.ProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +30,11 @@ public class CarritoController {
     private CategoriaService serviceCategoria;
     @Autowired
     private LineaPedidoService serviceLineaPedido;
+    @Autowired
+    private ClienteService clienteService;
+
+    @Autowired
+    private ProvinciaService provinciaService;
 
     @GetMapping({"/tienda"})
     public String listarUsu(Model model) {
@@ -112,6 +116,30 @@ public class CarritoController {
         return "carrito";
     }
 
+    @GetMapping({"/cliente/facturacion"})
+    public String clienteNewForm(Model model, LineaPedido lineaPedido) {
+        Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
+        lineaPedido.setPedido(pedido1);
+
+        List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(pedido1.getIdPedido());
+
+
+        //CONFIRMAT
+        model.addAttribute("clienteForm", new Cliente());
+        model.addAttribute("provincias", provinciaService.findAll());
+        model.addAttribute("lineasCarrito", lineaPedido1);
+        model.addAttribute("totalCarrito", lineaPedido.getPedido().getTotalPedido());
+        model.addAttribute("precioEnvio", pedido1.getpEnvio());
+        return "clienteFacturacion";
+    }
+
+    @PostMapping("/cliente/facturacion/submit")
+    public String nuevoclienteSubmit(@ModelAttribute("clienteForm") Cliente cliente) {
+
+       //CONFIRMAR EL PEDIDO. Y PASAR A LA VISTA DE RELLENAR TARJETA DE CREDITO
+        clienteService.add(cliente);
+        return "redirect:/index";
+    }
     public void recorrerCarrito(LineaPedido linea) {
         double totalCarrito = 0;
         List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(linea.getPedido().getIdPedido());

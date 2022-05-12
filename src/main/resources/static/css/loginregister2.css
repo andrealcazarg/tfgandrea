@@ -43,6 +43,13 @@ a{
     border-color: #f8b739;
     color: #fff;
 }
+#boton-naranja{
+    margin-top:1%;
+    background: orange;
+    border-color: #f8b739;
+    color: black;
+}
+
 .btn-primaryList{
     margin:auto;
     background: #007bff;
@@ -63,8 +70,21 @@ a{
     min-height: 100vh;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
-    transition: all 0.3s; }
-
+    transition: all 0.3s;
+}
+.table-envio{
+    margin-top: 1em;
+    border: 1px solid black;
+    width:50%;
+}
+.agrupacion{
+    width: 40%;
+    display: inline-block;
+}
+.agrupacion-pago{
+    width: 55%;
+    float: right;
+}
 .navbar {
     margin:auto;
     background: #fff;
