@@ -17,9 +17,9 @@
 <div class="row">
     <div class="content-main">
         <form method="post" action="#"
-              th:action="${clienteForm.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/new/submit}"
-              th:object="${clienteForm}">
-            <h1 th:text="${clienteForm.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
+              th:action="${clienteAceptar.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/facturacion/submit}"
+              th:object="${clienteAceptar}">
+            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
 
             <div class="agrupacion">
                 <div class="form-group">
@@ -107,9 +107,10 @@
                         </tr>
                     </tfoot>
                 </table>
+                <button type="submit" class="btn btn btn-primary" id="boton-naranja">Pagar</button>
             </div>
 
-            <button type="submit" class="btn btn btn-primary" id="boton-naranja">Enviar</button>
+
         </form>
     </div>
 </div>
