@@ -3,6 +3,7 @@ package com.example.prueba.controller;
 import com.example.prueba.constantes.Constante;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,9 @@ public class MainController {
         return "nosotros";
     }
 
-
+    @GetMapping("/apadrina")
+    public String apadrina(Model model) {
+        return "apadrina";
+    }
 
 }

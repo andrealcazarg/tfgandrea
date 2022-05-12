@@ -1,14 +1,9 @@
 
 /*PARA EL LOGIN*/
 body{
-    background-color:#f0f0f1;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    /*width:100%;*/
-    /*height: 500px;*/
-    background: url("../img/banner.png") no-repeat;
-    background-size:  100% 140%;
+    background: url('../img/banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .login-form-1{
@@ -22,60 +17,65 @@ body{
 
     border-radius:20px;
 }
+.limiter{
+    width:100%;
+    margin:auto;
+}
 .login-container{
+   padding-top: 18em;
+    justify-content: center;
 
-    margin-top:15%;
 }
 .login-form-1 h3{
-    margin-bottom:10%;
-    text-align: center;
-    color: #333;
+margin-bottom:10%;
+text-align: center;
+color: #333;
 }
 
 .btnSubmit
 {
-    width: 60%;
-    border-radius: 1rem;
-    padding: 1.5%;
-    border: none;
-    cursor: pointer;
-    margin-top:8%;
+width: 60%;
+border-radius: 1rem;
+padding: 1.5%;
+border: none;
+cursor: pointer;
+margin-top:8%;
 }
 .login-form-1 .btnSubmit{
 
-    font-weight: 600;
-    color: #fff;
-    background-color: #f29d14;
+font-weight: 600;
+color: #fff;
+background-color: #f29d14;
 }
 .login-form-1 .btnSubmit:hover{
-    background-color: white;
-    border: 1px solid #f29d14;
-    color:#f29d14;
+background-color: white;
+border: 1px solid #f29d14;
+color:#f29d14;
 }
 
 p{
-    padding:8px;
-    margin:0;
+padding:8px;
+margin:0;
 }
 .g-color-primary{
-    color: #f29d14;
+color: #f29d14;
 }
 .input-group-addon{
-    border: 1px solid black;
+border: 1px solid black;
 }
 .form-control{
-    border: 1px solid black;
+border: 1px solid black;
 }
 .fa-lock {
-    padding: 0.5rem;
-    color: orange;
+padding: 0.5rem;
+color: orange;
 }
 .fa-envelope{
-    padding: 0.4rem;
-    color: orange;
+padding: 0.4rem;
+color: orange;
 }
 .mb-4{
-    width:80%;
-    margin:auto;
+width:80%;
+margin:auto;
 }
 

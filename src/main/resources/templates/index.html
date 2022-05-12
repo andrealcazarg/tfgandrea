@@ -42,12 +42,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/nosotros">NOSOTROS</a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/apadrina">APADRINA</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/tienda">TIENDA</a>
                 </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="/carrito">CARRITO</a>
-                </li>
+                   <div class="flex-column">
+                    <li class="nav-item" id="carrito">
+                        <a class="nav-link" href="/carrito">CARRITO</a>
+                    </li>
+                    <li class="nav-item" id="li-carrito">
+                            <a id="color-carrito" href="/carrito"> <i class="bi bi-cart-plus"></i></a>
+                    </li>
+                 </div>
             </ul>
             </span>
         </div>
@@ -154,14 +162,14 @@
                     <div class="col-lg-5">
                         <div class="footer-brand">Producto</div>
                         <div class="mb-3"> </div>
-                        <ul class="list-unstyled mb-0">
+                        <ul class="list-unstyled" id="envios-lista">
                             <li class="mb-2">De 0 a 2.999 kg de peso neto 5,99 € de envío</li>
                             <li class="mb-2">De 3 kg a 5.999 kg de peso neto 7,99 € de envío</li>
                             <li class="mb-2">De 6 kg a 9.999 kg de peso neto 9,99 € de envío</li>
                             <li class="mb-2">De 10 kg a 18.999 kg netos de peso 14,99 € de envío</li>
                         </ul>
                     </div>
-                    <div class="col-lg-4 mb-5">
+                    <div class="col-lg-4 mb-1" id="pedidos-horario">
                         <div class="footer-brand">LOS PEDIDOS TAMBIEN PODRÁN REALIZARSE MEDIANTE TELÉFONO</div>
                         <div class="mb-3">Horario: Mañanas : De 9 a 14 h Tardes: De 16 a 20 h de Lunes a Sábado. </div>
                         <div class="mb-2">

@@ -11,7 +11,7 @@
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/loginregister3.css}"/>
     <link href=" https://fonts.googleapis.com/css?family=Karla:300,400,500,600,700,800,900%22" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
 
 </head>
 
@@ -43,15 +43,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/nosotros">NOSOTROS</a>
                 </li>
-                <li class="nav-item">
+                 <li class="nav-item">
+                    <a class="nav-link" href="/apadrina">APADRINA</a>
+                </li>
+                 <li class="nav-item">
                     <a class="nav-link-tienda" href="/tienda">TIENDA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/carrito">CARRITO</a>
+                </li>
+                <li class="nav-item">
+                        <a id="color-carrito" href="/carrito"> <i class="bi bi-cart-plus"></i></a>
                 </li>
             </ul>
             </span>
         </div>
     </div>
 </nav>
-<section class="py-5">
+<section class="pt-5">
     <form method="post" action="#" th:action="@{/carrito/{idProducto}(idProducto=${listaProductosTienda.idProducto})}" th:object="${listaProductosTienda}" >
         <form th:object="${lineaPedido}">
             <div class="container px-4 px-lg-5 my-5">
@@ -62,17 +71,17 @@
                         <div class="fs-5 mb-3 text-warning fw-bold">
                             <span th:text="${listaProductosTienda.getPrecio() + ' €'}" ></span>
                         </div>
-                        <div class="small mb-3 fw-bold">Categoria: Botes de Miel</div>
+                        <div class="small mb-3 fw-bold" th:text=" 'Categoria: ' + ${listaProductosTienda.getCategoria().nombre}"></div>
                         <p class="lead">Descripcion:
                             Miel Multiflora con Eucalipto. Muy energética,
                             ayuda a combatir el cansancio. * Es rica en una gran variedad de vitaminas, minerales y
-                            antioxidantes, Es considerada multiflora porque no denomina ninguna especie floral
-                            por encima de las demás. contiene azúcares naturales como la fructosa, glucosa y
-                            sacarosa. Ideal para infecciones, gripes y resfriados, también combate la anemia.
+<!--                            antioxidantes, Es considerada multiflora porque no denomina ninguna especie floral-->
+<!--                            por encima de las demás. contiene azúcares naturales como la fructosa, glucosa y-->
+<!--                            sacarosa. Ideal para infecciones, gripes y resfriados, también combate la anemia.-->
                           </p>
-                        <div class="small mb-3 fw-bold" th:text="${listaProductosTienda.getPeso() + ' Kg'}"></div>
+                        <div class="small mb-3 fw-bold" th:text=" 'Peso: ' + ${listaProductosTienda.getPeso() + ' Kg'}"></div>
                         <div class="d-flex">
-                            <input type="number" class="form-control text-center me-3" th:field="*{cantidad}" id="inputQuantity"/>
+                            <input type="number" id="input-cantidad" class="form-control text-center me-3" th:field="*{cantidad}"/>
 
 
                             <div id="container-btn" class="mt-auto">
@@ -94,7 +103,52 @@
         </form>
     </form>
 </section>
+<footer class="footer pt-10 mt-auto footer-black">
+    <div class="container">
+        <div class="row-footer">
+            <div class="col-lg-3">
+                <div class="footer-brand"> Miel Cuarta Generacion</div>
+                <div class="mb-2 fw-light ">Siguenos en: </div>
+                <div class="icon-list-social mb-5">
+                    <a class="icon-list-social-link" href="https://www.instagram.com/miel_cuartageneracion/">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a class="icon-list-social-link" href="https://www.facebook.com/MielCuartaGeneracion/">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <div class="fw-light ">Puedes realizar tu pedido en: </div>
+                    <a class="icon-list-social-link" href="https://api.whatsapp.com/send?phone=34606900157&text=">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
 
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row" id="row-productos" >
+                    <div class="col-lg-5">
+                        <div class="footer-brand">Producto</div>
+                        <div class="mb-3"> </div>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">De 0 a 2.999 kg de peso neto 5,99 € de envío</li>
+                            <li class="mb-2">De 3 kg a 5.999 kg de peso neto 7,99 € de envío</li>
+                            <li class="mb-2">De 6 kg a 9.999 kg de peso neto 9,99 € de envío</li>
+                            <li class="mb-2">De 10 kg a 18.999 kg netos de peso 14,99 € de envío</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 mb-1">
+                        <div class="footer-brand">LOS PEDIDOS TAMBIEN PODRÁN REALIZARSE MEDIANTE TELÉFONO</div>
+                        <div class="mb-3">Horario: Mañanas : De 9 a 14 h Tardes: De 16 a 20 h de Lunes a Sábado. </div>
+                        <div class="mb-2">
+                            <img class="iconos" src="https://mielcuartageneracion.es/wp-content/uploads/2021/11/logo-alimenta-300x100.png">
+                            <img class="iconos" src="https://mielcuartageneracion.es/wp-content/uploads/2021/11/logo-biosfera-300x152.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="marca bg-black text-white h-25">Diseño creado por : Andrea Alcazar Galan</div>
 <script th:src="@{/js/scroll.js}"></script>
 </body>
 </html>

@@ -54,10 +54,34 @@ ul.navbar-nav{
 .navbar-text a.nav-link-tienda {
     display: block;
     padding: 0.5rem 0rem;
-    padding-right: 0.5rem;
     color: orange;
     text-decoration: none;
 }
+.navbar-text a.nav-link-carrito{
+    display: block;
+    padding: 0.5rem 0rem;
+    color: orange;
+    text-decoration: none;
+}
+.navbar-text a.nav-link-nosotros{
+    display: block;
+    padding: 0.5rem 0rem;
+    color: orange;
+    text-decoration: none;
+}
+.navbar-text a.nav-link-apadrina{
+    display: block;
+    padding: 0.5rem 0rem;
+    color: orange;
+    text-decoration: none;
+}
+#input-cantidad{
+    width: 5em;
+}
+#categoria-hover:hover{
+    color:orange;
+}
+
 .row{
     margin:5%;
     padding:0;
@@ -85,6 +109,10 @@ ul.navbar-nav{
     width: 100%;
     height: 65px;
 }
+.nosotros-padding{
+    padding-top: 7rem;
+    padding-bottom: 15rem;
+}
 .col-lg-9{
     width:0;
 }
@@ -93,6 +121,21 @@ ul.navbar-nav{
     padding-left: 50px;
     float: left;
     width: 30%;
+}
+#nav-sidebar{
+    text-decoration: none;
+    color:black;
+}
+#nav-sidebar:hover{
+    text-decoration: none;
+    color:orange;
+}
+#ul-margin{
+    margin-left: 2em;
+}
+#margin-bote{
+    margin: auto;
+    padding-left: 1em;
 }
 .derecha{
     text-align: right;
@@ -159,8 +202,20 @@ ul.navbar-nav{
     #row-carrito{
         margin-top: 10%;
     }
-    .categorias{
-
+    #li-carrito{
+      width: 5em;
+        padding-left: 0.5rem;
+        float: left;
+    }
+    #carrito{
+        float: left;
+        width: 5em;
+    }
+    #pedidos-horario{
+        margin-left: -16em;
+    }
+    #envios-lista{
+        font-size: 0.9em;
     }
 }
 .py-10 {
@@ -208,8 +263,6 @@ section{
 }
 #button-add{
     background-color:orange;
-
-
 
     text-decoration: none;
 
@@ -270,11 +323,27 @@ a:hover{
 .bi-whatsapp:hover{
     color:green;
 }
+.bi-cart-plus{
+    font-size: 1.5em;
+}
 #right{
     text-align: right;
 }
 .marca{
     height: 3em;
     padding: 1em;
+}
+#color-carrito{
+    color:currentColor;
+}
+#color-carrito:hover{
+    color:orange;
+}
+#carrito{
+    float: left;
+}
+#li-carrito{
+    padding-left: 0.5rem;
+    float: left;
 }
 

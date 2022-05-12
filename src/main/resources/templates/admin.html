@@ -12,67 +12,48 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
-
-<!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark">-->
-<!--    <div class="container-fluid">-->
-<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--        </button>-->
-<!--        <div class="collapse navbar-collapse" id="mynavbar">-->
-<!--            <ul class="navbar-nav me-auto">-->
-<!--                <li class="nav-item">-->
-<!--                    <p style="color:white">BIENVENIDO A TU PANEL DE ADMINISTRACION</p>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-<div class="container login-container">
-<!--    <div class="fondo"-->
-
+    <div class="container login-container">
         <div class="row">
-            <table>
-                <tr>
-                    <td>
-                        <div class="col-md-6 login-form-1">
-                            <form style="padding-top: 0px" method="post" th:action="@{/admin/submit}"
-                                  th:object="${usuarioForm}">
-                                <h3>Login</h3>
+        <table>
+            <tr>
+                <td>
+                    <div class="col-md-6 login-form-1">
+                        <form style="padding-top: 0px" method="post" th:action="@{/admin/submit}"
+                              th:object="${usuarioForm}">
+                            <h3>Login</h3>
 
-                                <div class="mb-4">
-                                    <label for="email">Email</label>
-                                    <div class="input-group g-rounded-left-3">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-envelope" style="font-size:1.3rem;"></i>
-                                        </div>
-                                        <input type="email" class="form-control" id="email" th:field="*{email}"
-                                               required/>
+                            <div class="mb-4">
+                                <label for="email">Email</label>
+                                <div class="input-group g-rounded-left-3">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-envelope" style="font-size:1.3rem;"></i>
                                     </div>
-                                    <i class='bx bxs-lock-alt'></i>
+                                    <input type="email" class="form-control" id="email" th:field="*{email}"
+                                           required/>
                                 </div>
+                                <i class='bx bxs-lock-alt'></i>
+                            </div>
 
-                                <div class="mb-4">
-                                    <label for="passwordL">Password</label>
-                                    <div class="input-group g-rounded-left-3">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-lock" style="font-size:1.7rem;"></i>
-                                        </div>
-                                        <input type="password" class="form-control" id="passwordL"
-                                               th:field="*{password}" required/>
+                            <div class="mb-4">
+                                <label for="passwordL">Password</label>
+                                <div class="input-group g-rounded-left-3">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-lock" style="font-size:1.7rem;"></i>
                                     </div>
+                                    <input type="password" class="form-control" id="passwordL"
+                                           th:field="*{password}" required/>
                                 </div>
+                            </div>
 
-                                <button type="submit" class="btnSubmit">Acceder</button>
+                            <button type="submit" class="btnSubmit">Acceder</button>
 
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-<!--&lt;!&ndash;        </div>-->
     </div>
-</div>
+    </div>
 </body>
 </html>
