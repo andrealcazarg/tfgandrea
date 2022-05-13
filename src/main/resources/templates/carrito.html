@@ -64,7 +64,7 @@
 <div id="row-carrito" class="row">
     <div class="content-main">
         <div class="left-area">
-            <table class="table">
+            <table class="table" id="table-productos">
                 <h2> Productos de la Empresa</h2>
                 <thead>
                 <tr>
@@ -76,10 +76,11 @@
                     <th>Total Peso</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="lineas : ${lineasCarrito}">
-                    <td th:text="${lineas.producto.getImagen()}"></td>
-                    <td th:text="${lineas.producto.nombre}"></td>
+                <tbody th:each="lineas : ${lineasCarrito}">
+
+                <tr >
+                    <td><img alt="" id="foto-pequeña" th:src="${lineas.producto.getImagen()}"/></td>
+                    <td  th:text="${lineas.producto.nombre}"></td>
                     <td th:text="${lineas.producto.precio} + ' €'"></td>
                     <td class="text-center" th:text="${lineas.getCantidad()}"></td>
                     <td th:text="${lineas.getSubtotal()} + ' €' "></td>
@@ -88,7 +89,7 @@
                 </tr>
                 </tbody>
             </table>
-            <table class="ta ble-envio">
+            <table class="table-envio">
                 <h1 class="derecha">Total Carrito</h1>
                 <tbody th:each="total : ${totalCarrito}">
                 <tr>

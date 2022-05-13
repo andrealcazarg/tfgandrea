@@ -102,12 +102,18 @@ ul.navbar-nav{
 #row-productos{
     width: max-content;
 }
+#row-facturacion{
+    margin-top:8em;
+}
 #row-tienda{
     margin: 1%;
 }
 .logo {
     width: 100%;
     height: 65px;
+}
+.btn-primary{
+    margin-top: 0.5em;
 }
 .nosotros-padding{
     padding-top: 7rem;
@@ -149,6 +155,7 @@ ul.navbar-nav{
 }
 .table{
     margin-bottom: 30px;
+    border-collapse: separate;
 }
 .table-envio{
 
@@ -263,6 +270,12 @@ section{
     font-size: 1.2rem;
     font-weight: bold;
 }
+#foto-pequeña{
+    height:6em;
+}
+td{
+    vertical-align: middle;
+}
 #button-add{
     background-color:orange;
 
@@ -348,4 +361,18 @@ a:hover{
     padding-left: 0.5rem;
     float: left;
 }
+.table-envio{
+    margin-top: 1em;
+    border: 1px solid black;
+    width:50%;
+}
+.agrupacion{
+    width: 40%;
+    display: inline-block;
+}
+.agrupacion-pago{
+    width: 55%;
+    float: right;
+}
+
 

@@ -7,20 +7,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href=" https://fonts.googleapis.com/css?family=Karla:300,400,500,600,700,800,900%22" rel="stylesheet"/>
     <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/loginregister2.css}"/>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<!--    <link rel="stylesheet" th:href="@{/css/loginregister2.css}"/>-->
+    <link rel="stylesheet" th:href="@{/css/loginregister3.css}"/>
 
 </head>
-<body>
-<div class="row">
+<body id="page-home">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="mainNav">
+    <div class="container-fluid">
+
+    <span class="navbar-text">
+
+           <ul class="navbar-nav me-auto">
+              <li class="nav-item justify-content-start">
+                <a class="nav-link" href="#page-home">
+                    <img th:src="@{/img/logo2.png}" class="logo">
+                </a>
+              </li>
+           </ul>
+
+        </span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-right" id="navbarResponsive">
+            <span class="navbar-text">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">BIENVENIDOS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/nosotros">NOSOTROS</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/apadrina">APADRINA</a>
+                </li>
+                <li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="/tienda">TIENDA</a>
+                </li>
+                <div class="flex-column">
+                    <li class="nav-item" id="carrito">
+                        <a class="nav-link" href="/carrito">CARRITO</a>
+                    </li>
+                    <li class="nav-item" id="li-carrito">
+                            <a id="color-carrito" href="/carrito"> <i class="bi bi-cart-plus"></i></a>
+                    </li>
+                </div>
+            </ul>
+            </span>
+        </div>
+    </div>
+</nav>
+<div class="row" id="row-facturacion">
     <div class="content-main">
         <form method="post" action="#"
               th:action="${clienteAceptar.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/facturacion/submit}"
               th:object="${clienteAceptar}">
             <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
-
+<!--            th:action="@{/cliente/facturacion/{idCliente}(idCliente=${clienteAceptar.idCliente})}-->
             <div class="agrupacion">
                 <div class="form-group">
                     <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre"
@@ -114,5 +165,54 @@
         </form>
     </div>
 </div>
+<footer class="footer pt-10 mt-auto footer-black">
+    <div class="container">
+        <div class="row-footer">
+            <div class="col-lg-3">
+                <div class="footer-brand"> Miel Cuarta Generacion</div>
+                <div class="mb-2 fw-light ">Siguenos en:</div>
+                <div class="icon-list-social mb-5">
+                    <a class="icon-list-social-link" href="https://www.instagram.com/miel_cuartageneracion/">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a class="icon-list-social-link" href="https://www.facebook.com/MielCuartaGeneracion/">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <div class="fw-light ">Puedes realizar tu pedido en:</div>
+                    <a class="icon-list-social-link" href="https://api.whatsapp.com/send?phone=34606900157&text=">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row" id="row-productos">
+                    <div class="col-lg-5">
+                        <div class="footer-brand">Producto</div>
+                        <div class="mb-3"></div>
+                        <ul class="list-unstyled mb-0" id="envios-lista">
+                            <li class="mb-2">De 0 a 2.999 kg de peso neto 5,99 € de envío</li>
+                            <li class="mb-2">De 3 kg a 5.999 kg de peso neto 7,99 € de envío</li>
+                            <li class="mb-2">De 6 kg a 9.999 kg de peso neto 9,99 € de envío</li>
+                            <li class="mb-2">De 10 kg a 18.999 kg netos de peso 14,99 € de envío</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 mb-1" id="pedidos-horario">
+                        <div class="footer-brand">LOS PEDIDOS TAMBIEN PODRÁN REALIZARSE MEDIANTE TELÉFONO</div>
+                        <div class="mb-3">Horario: Mañanas : De 9 a 14 h Tardes: De 16 a 20 h de Lunes a Sábado.
+                        </div>
+                        <div class="mb-2">
+                            <img class="iconos"
+                                 src="https://mielcuartageneracion.es/wp-content/uploads/2021/11/logo-alimenta-300x100.png">
+                            <img class="iconos"
+                                 src="https://mielcuartageneracion.es/wp-content/uploads/2021/11/logo-biosfera-300x152.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="marca bg-black text-white h-25">Diseño creado por : Andrea Alcazar Galan</div>
 </body>
 </html>

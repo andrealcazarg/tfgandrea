@@ -133,17 +133,25 @@ public class CarritoController {
         return "clienteFacturacion";
     }
 
-    @PostMapping({"/cliente/facturacion/submit"})
-    public String nuevoclienteSubmit(@ModelAttribute("clienteAceptar") Cliente cliente) {
+    @PostMapping({"/cliente/facturacion/submit}"})
+    public String nuevoclienteSubmit(@ModelAttribute("clienteAceptar")Cliente cliente) {
 
-       //CONFIRMAR EL PEDIDO //confir=true. //añadir el id del cliente a la tabla pedido .
-        clienteService.add(cliente);
+           //Cliente cliente=clienteService.findById(idCliente);
+           clienteService.add(cliente);
         return "redirect:/pagarTarjeta";
     }
     @GetMapping({"/pagarTarjeta"})
-    public String pagarTarjeta(Model model){
+    public String pagarTarjeta(Model model, Pedido pedido){
         //realizar la transaccion con stripe //crear nuevo pedido ??????
+
+       // pedido.getCliente().setIdCliente(cliente.getIdCliente());
+
+        //CONFIRMAR EL PEDIDO //confir=true.
         //para confirmar el pedido tiene que ser un POSt ??????
+        pedido.setConfir(true);
+
+        servicePedido.edit(pedido);
+        model.addAttribute("listTarjeta",pedido);
         return "pagar";
     }
 
