@@ -70,7 +70,7 @@
         <form method="post" action="#"
               th:action="${clienteAceptar.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/facturacion/submit}"
               th:object="${clienteAceptar}">
-            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
+            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Formulario cliente</h1>
 <!--            th:action="@{/cliente/facturacion/{idCliente}(idCliente=${clienteAceptar.idCliente})}-->
             <div class="agrupacion">
                 <div class="form-group">
@@ -143,7 +143,7 @@
 
                     <tr>
                         <th>Subtotal</th>
-                        <td th:text="${lineas.getSubtotal()}"></td>
+                        <td th:text="${lineas.getSubtotal() + ' €'}"></td>
                     </tr>
 
                     </tbody>

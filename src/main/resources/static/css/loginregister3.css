@@ -92,7 +92,7 @@ ul.navbar-nav{
 }
 .row-footer{
     margin: 0;
-    padding-top:4em;
+    padding-top:2em;
     display: flex;
 }
 #row-carrito{
@@ -102,11 +102,18 @@ ul.navbar-nav{
 #row-productos{
     width: max-content;
 }
+#row-list{
+    width: max-content;
+}
 #row-facturacion{
     margin-top:8em;
 }
 #row-tienda{
-    margin: 1%;
+    display: flex;
+    margin-top: 1%;
+}
+#row-nosotros {
+    margin-top: 1%;
 }
 .logo {
     width: 100%;
@@ -117,10 +124,10 @@ ul.navbar-nav{
 }
 .nosotros-padding{
     padding-top: 7rem;
-    padding-bottom: 15rem;
+    padding-bottom: 3rem;
 }
 .col-lg-9{
-    width:0;
+    /*width:0;*/
 }
 .sidebar{
     margin-top: 60px;
@@ -266,12 +273,19 @@ section{
     font-weight: 700;
     margin-bottom: 0.25rem;
 }
+#naranja{
+    text-align: center;
+    color: orange;
+}
 .negrita{
     font-size: 1.2rem;
     font-weight: bold;
 }
 #foto-pequeña{
     height:6em;
+}
+#foto-grande{
+    height: 320px;
 }
 td{
     vertical-align: middle;
@@ -374,5 +388,23 @@ a:hover{
     width: 55%;
     float: right;
 }
+.fondo{
+    width: 100%;
+    background-image: linear-gradient(120deg, rgba(246, 212, 101, 0.26) 0%, rgba(253, 159, 133, 0.39) 50%), url('https://i.blogs.es/272b2e/mieles/1366_2000.jpg');
+    height: 400px;
+    background-size:cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* background-position: center; */
 
-
+}
+.row-dos{
+    width: 80%;
+    display: flex;
+    padding-top: 2em;
+    margin: auto;
+}
+.foto-row{
+    height: 200px;
+    padding: 0.5em;
+}

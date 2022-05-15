@@ -115,6 +115,17 @@ public class CarritoController {
         model.addAttribute("precioEnvio", pedido1.getpEnvio());
         return "carrito";
     }
+  @GetMapping("/carrito/borrar/{id}")
+    public String borrarProductoForm(@PathVariable int id){
+        LineaPedido lineaPedido=serviceLineaPedido.findById(id);
+        if (lineaPedido!= null) {
+            serviceLineaPedido.delete(lineaPedido);
+          recorrerCarrito(lineaPedido);
+            return "redirect:/carrito";
+        }else{
+            return "redirect:/index";
+        }
+    }
 
     @GetMapping({"/cliente/facturacion"})
     public String clienteNewForm(Model model, LineaPedido lineaPedido) {
@@ -133,7 +144,7 @@ public class CarritoController {
         return "clienteFacturacion";
     }
 
-    @PostMapping({"/cliente/facturacion/submit}"})
+    @PostMapping({"/cliente/facturacion/submit"})
     public String nuevoclienteSubmit(@ModelAttribute("clienteAceptar")Cliente cliente) {
 
            //Cliente cliente=clienteService.findById(idCliente);
