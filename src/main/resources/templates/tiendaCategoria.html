@@ -65,7 +65,7 @@
             <div class="col mb-5 p-3" th:each="listaProducto : ${listaProductos}">
                 <div id="marco" class="card h-40 mb-2 ">
                     <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                    <img class="card-img-top" id="foto-grande" th:src="${listaProducto.getImagen()}" alt="..." />
 
                 </div>
                 <div class="card h-40 border-0">
