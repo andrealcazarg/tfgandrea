@@ -67,8 +67,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center pt-4">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-1"
-                                               src="https://mielcuartageneracion.es/wp-content/uploads/2021/05/flores-con-eucalipto-1-kg-2-scaled.jpg"
-                                               alt="..."/></div>
+                                               th:src="${listaProductosTienda.getImagen()}" /></div>
                     <div class="col-md-6">
                         <h1 class="display-5 fw-bolder " th:text="${listaProductosTienda.getNombre()}"></h1>
                         <div class="fs-5 mb-3 text-warning fw-bold">

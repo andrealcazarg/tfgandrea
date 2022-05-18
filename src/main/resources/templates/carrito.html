@@ -105,8 +105,9 @@
                 </tbody>
             </table>
             <div class="pagar bg-transparent">
-                <div class="text-center">
-                    <a class="btn btn-outline-dark mt-auto" th:href="@{/cliente/facturacion}">Pagar</a>
+
+                <div class="text-center"  th:if="${lineasCarrito.size() !=0} ">
+                    <a class="btn btn-outline-dark mt-auto" th:href="@{/cliente/facturacion}" >Pagar</a>
                 </div>
             </div>
         </div>

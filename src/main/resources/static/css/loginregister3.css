@@ -9,8 +9,8 @@ body{
     position: relative;
     width:100%;
     height: 500px;
-    /*background: url('https://img.freepik.com/free-photo/honey-drips-from-spoon-into-jar-black-background_222185-1240.jpg') no-repeat;*/
-    background: url('https://i.gifer.com/RxCn.gif') no-repeat;
+    background: url('https://img.freepik.com/free-photo/honey-drips-from-spoon-into-jar-black-background_222185-1240.jpg') no-repeat;
+    /*background: url('https://i.gifer.com/RxCn.gif') no-repeat;*/
     background-size: cover;
     background-attachment: fixed;
 

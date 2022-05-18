@@ -111,6 +111,12 @@ public class CarritoController {
 
         model.addAttribute("lineasCarrito", lineaPedido1);
         model.addAttribute("listCategorias", serviceCategoria.findAll());
+        if (lineaPedido1.size() ==0){
+            pedido1.setpEnvio(0);
+            pedido1.setTotalPedido(0);
+            model.addAttribute("totalCarrito", lineaPedido.getPedido().getTotalPedido());
+            model.addAttribute("precioEnvio",pedido1.getpEnvio());
+        }
         model.addAttribute("totalCarrito", lineaPedido.getPedido().getTotalPedido());
         model.addAttribute("precioEnvio", pedido1.getpEnvio());
         return "carrito";
@@ -120,9 +126,9 @@ public class CarritoController {
         LineaPedido lineaPedido=serviceLineaPedido.findById(id);
         if (lineaPedido!= null) {
             serviceLineaPedido.delete(lineaPedido);
-          recorrerCarrito(lineaPedido);
+            recorrerCarrito(lineaPedido);
             return "redirect:/carrito";
-        }else{
+            }else{
             return "redirect:/index";
         }
     }
@@ -173,6 +179,7 @@ public class CarritoController {
         for (LineaPedido lineaPedido : lineaPedido1) {
             totalCarrito = totalCarrito + lineaPedido.getSubtotal();
         }
+
         linea.getPedido().setTotalPedido(totalCarrito + linea.getPedido().getpEnvio());
     }
     public void calcularEnvio(@ModelAttribute("lineaPedido") LineaPedido linea) {
