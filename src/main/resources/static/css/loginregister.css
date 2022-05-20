@@ -3,7 +3,7 @@
 body{
     background: url('../img/banner.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 120%;
 }
 
 .login-form-1{
@@ -22,7 +22,7 @@ body{
     margin:auto;
 }
 .login-container{
-   padding-top: 18em;
+   padding-top: 15em;
     justify-content: center;
 
 }
