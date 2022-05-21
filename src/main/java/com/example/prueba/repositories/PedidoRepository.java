@@ -9,8 +9,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface PedidoRepository extends JpaRepository<Pedido,Integer> {
 
-    @Query("SELECT u FROM Pedido u where  u.sesionID = :sessionID")
+    @Query("SELECT u FROM Pedido u where  u.sesionID = :sessionID and u.confir= false")
     Pedido selectPedido( @Param("sessionID") String sessionID);
     @Query(value = "SELECT SESSION_ID FROM SPRING_SESSION", nativeQuery = true)
     String obtenerID();
+    @Query("select u from Pedido u where u.confir = false ")
+    Pedido findConfir();
 }

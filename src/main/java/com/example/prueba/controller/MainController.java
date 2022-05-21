@@ -37,5 +37,9 @@ public class MainController {
     public String apadrina(Model model) {
         return "apadrina";
     }
+    @GetMapping("/prueba")
+    public String prueba(Model model){
+        return "prueba";
+    }
 
 }

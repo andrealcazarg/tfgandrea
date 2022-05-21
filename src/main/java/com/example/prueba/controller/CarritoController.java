@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -67,7 +68,7 @@ public class CarritoController {
 
         Pedido pedido1 = servicePedido.selectPedido(pedido.getSesionID());
 
-        if (pedido1 == null) {
+        if (pedido1 == null || pedido1.isConfir()) {
             servicePedido.add(pedido);
             lineaPedido.setPedido(pedido);
         } else {
@@ -140,35 +141,40 @@ public class CarritoController {
 
         List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(pedido1.getIdPedido());
 
-
         //CONFIRMAT
         model.addAttribute("clienteAceptar", new Cliente());
         model.addAttribute("provincias", provinciaService.findAll());
         model.addAttribute("lineasCarrito", lineaPedido1);
         model.addAttribute("totalCarrito", lineaPedido.getPedido().getTotalPedido());
         model.addAttribute("precioEnvio", pedido1.getpEnvio());
+
         return "clienteFacturacion";
     }
 
     @PostMapping({"/cliente/facturacion/submit"})
     public String nuevoclienteSubmit(@ModelAttribute("clienteAceptar")Cliente cliente) {
+        Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
+        Cliente cliente1 =clienteService.getCliente(cliente.getEmail());
 
-           //Cliente cliente=clienteService.findById(idCliente);
-           clienteService.add(cliente);
+        //creo el cliente si no existe
+        if(cliente1 ==null) {
+            clienteService.add(cliente);
+            pedido1.setCliente(cliente);
+        }else{
+            //añadir al pedido el cliente
+            pedido1.setCliente(cliente1);
+        }
+        //confirmo el pedido y agrego la fecha actual
+            pedido1.setFecha(String.valueOf(LocalDate.now()));
+            pedido1.setConfir(true);
+        //tambien borrar las lienas de pedido
+
         return "redirect:/pagarTarjeta";
     }
     @GetMapping({"/pagarTarjeta"})
     public String pagarTarjeta(Model model, Pedido pedido){
-        //realizar la transaccion con stripe //crear nuevo pedido ??????
-
-       // pedido.getCliente().setIdCliente(cliente.getIdCliente());
-
-        //CONFIRMAR EL PEDIDO //confir=true.
-        //para confirmar el pedido tiene que ser un POSt ??????
-        pedido.setConfir(true);
-
-        servicePedido.edit(pedido);
-        model.addAttribute("listTarjeta",pedido);
+        //añadir paypal
+        //model.addAttribute("listTarjeta",pedido);
         return "pagar";
     }
 

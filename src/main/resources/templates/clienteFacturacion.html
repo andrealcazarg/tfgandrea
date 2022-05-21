@@ -68,9 +68,9 @@
 <div class="row" id="row-facturacion">
     <div class="content-main">
         <form method="post" action="#"
-              th:action="${clienteAceptar.idCliente != 0} ? @{/cliente/edit/submit} : @{/cliente/facturacion/submit}"
+              th:action="${clienteAceptar.idCliente != 0 and clienteAceptar.email !=null} ? @{/cliente/facturacion/submit} : @{/cliente/facturacion/submit}"
               th:object="${clienteAceptar}">
-            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Formulario cliente</h1>
+            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Pagar Tarjeta' : 'Nuevo cliente'">Formulario cliente</h1>
 <!--            th:action="@{/cliente/facturacion/{idCliente}(idCliente=${clienteAceptar.idCliente})}-->
             <div class="agrupacion">
                 <div class="form-group">
@@ -89,8 +89,7 @@
                                                                               th:field="*{nombreEmpresa}"/>
                 </div>
                 <div class="form-group">
-                    <label for="pais">Pais</label> <input type="email" class="form-control" id="pais"
-                                                          placeholder="España" th:field="*{pais}" readonly/>
+                    <label for="pais">Pais</label> <input type="email" class="form-control" id="pais" placeholder="España" th:field="*{pais}" readonly/>
                 </div>
                 <div class="form-group">
                     <label for="direccion">Direccion</label> <input type="text" class="form-control" id="direccion"

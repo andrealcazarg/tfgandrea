@@ -1,28 +1,33 @@
 package com.example.prueba.model;
 
+import org.hibernate.annotations.CollectionId;
+
 import javax.persistence.*;
 
 @Entity
 public class Prueba {
     @Id
    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private String idPrueba;
+     private int idPrueba;
     @Column
      private String nombre;
+    @Column
+    private boolean confir;
 
     public Prueba() {
     }
 
-    public Prueba(String idPrueba, String nombre) {
+    public Prueba(int idPrueba, String nombre,boolean confir) {
         this.idPrueba = idPrueba;
         this.nombre = nombre;
+        this.confir = confir;
     }
 
-    public String getIdPrueba() {
+    public int getIdPrueba() {
         return idPrueba;
     }
 
-    public void setIdPrueba(String idPrueba) {
+    public void setIdPrueba(int idPrueba) {
         this.idPrueba = idPrueba;
     }
 
@@ -34,11 +39,20 @@ public class Prueba {
         this.nombre = nombre;
     }
 
+    public boolean isConfir() {
+        return confir;
+    }
+
+    public void setConfir(boolean confir) {
+        this.confir = confir;
+    }
+
     @Override
     public String toString() {
         return "Prueba{" +
                 "idPrueba=" + idPrueba +
                 ", nombre='" + nombre + '\'' +
+                ", confir=" + confir +
                 '}';
     }
 }

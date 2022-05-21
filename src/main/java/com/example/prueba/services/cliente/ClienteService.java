@@ -41,4 +41,9 @@ public class ClienteService implements IClienteService {
         repositorio.delete(u);
     }
 
+    @Override
+    public Cliente getCliente(String email) {
+        return repositorio.getCliente(email);
+    }
+
 }

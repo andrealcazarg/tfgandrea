@@ -51,5 +51,10 @@ public class PedidoService implements IPedidoService {
         return repositorio.selectPedido(sessionID);
     }
 
+    @Override
+    public Pedido findConfir() {
+        return repositorio.findConfir();
+    }
+
 
 }

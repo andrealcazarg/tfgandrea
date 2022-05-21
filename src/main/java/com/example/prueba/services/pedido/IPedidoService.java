@@ -13,4 +13,5 @@ public interface IPedidoService {
     void delete(Pedido u);
     String obtenerID();
     Pedido selectPedido(String sessionID);
+    Pedido findConfir();
 }

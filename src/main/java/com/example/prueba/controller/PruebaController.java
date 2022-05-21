@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * API REST CREADA. PARA COMPROBAR ABRIR POSTMAN CON LOCALHOST:8080/
  */
-//@RestController
+
+@RestController
 public class PruebaController {
 
     @Autowired
@@ -42,6 +43,7 @@ public class PruebaController {
     public void updateUser(@RequestBody Prueba pruebaedit, @PathVariable int id) {
         Prueba prueba = servicio.findById(id);
         prueba.setNombre(pruebaedit.getNombre());
+        prueba.setConfir(pruebaedit.isConfir());
         servicio.edit(prueba);
 
 

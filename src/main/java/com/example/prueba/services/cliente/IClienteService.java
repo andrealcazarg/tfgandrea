@@ -11,5 +11,5 @@ public interface IClienteService {
     Cliente findById(Integer id);
     Cliente edit(Cliente u);
     void delete(Cliente u);
-
+    Cliente getCliente(String email);
 }

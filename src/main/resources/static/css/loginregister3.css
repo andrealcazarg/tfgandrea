@@ -500,40 +500,9 @@ a:hover{
 
 .image-tile .tile {
     border: 1px solid #fff;
-    height: 100px;
+    height: 350px;
     margin: 0;
     padding: 0;
     text-align: center;
     vertical-align: bottom
-}
-
-.image-tile .tile:hover {
-    cursor: pointer
-}
-
-.image-tile .tile:hover>p {
-    background-color: rgba(3, 3, 3, .5);
-    color: #fff
-}
-
-.image-tile .tile>p {
-    background-color: rgba(3, 3, 3, 0);
-    color: rgba(6, 6, 6, 0);
-    font-size: 13px;
-    font-weight: 300;
-    height: 100%;
-    padding-top: 50px;
-    width: 100%
-}
-
-.image-tile .tile.more-images {
-    background-color: #29c7ca;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 300
-}
-
-.image-tile .tile.more-images .images-number {
-    font-size: 25px;
-    margin-top: 20px
 }
