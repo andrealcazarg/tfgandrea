@@ -1,22 +1,24 @@
 package com.example.prueba.controller;
 
-import com.example.prueba.constantes.Constante;
 import com.example.prueba.model.*;
+import com.example.prueba.paypal.PaypalService;
 import com.example.prueba.services.categoria.CategoriaService;
 import com.example.prueba.services.cliente.ClienteService;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
 import com.example.prueba.services.pedido.PedidoService;
 import com.example.prueba.services.producto.ProductoService;
 import com.example.prueba.services.provincia.ProvinciaService;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payment;
+import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.NumberFormat;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,12 +38,19 @@ public class CarritoController {
 
     @Autowired
     private ProvinciaService provinciaService;
+    @Autowired
+    private PaypalService paypalService;
+
+
+    public static final String SUCCESS_URL = "pay/success";
+    public static final String CANCEL_URL = "pay/cancel";
 
     @GetMapping({"/tienda"})
     public String listarUsu(Model model) {
         model.addAttribute("listaProductosTienda", servicio.findAll());
         return "tienda";
     }
+
     @GetMapping("/categoria/{idCategoria}")
     public String listarCategoria(Model model, @PathVariable int idCategoria) {
         Categoria categoria = serviceCategoria.findById(idCategoria);
@@ -112,34 +121,45 @@ public class CarritoController {
 
         model.addAttribute("lineasCarrito", lineaPedido1);
         model.addAttribute("listCategorias", serviceCategoria.findAll());
-        if (lineaPedido1.size() ==0){
+        if (lineaPedido1.size() == 0) {
             pedido1.setpEnvio(0);
             pedido1.setTotalPedido(0);
             model.addAttribute("totalCarrito", lineaPedido.getPedido().getTotalPedido());
-            model.addAttribute("precioEnvio",pedido1.getpEnvio());
+            model.addAttribute("precioEnvio", pedido1.getpEnvio());
         }
         model.addAttribute("totalCarrito", lineaPedido.getPedido().getTotalPedido());
         model.addAttribute("precioEnvio", pedido1.getpEnvio());
         return "carrito";
     }
-  @GetMapping("/carrito/borrar/{id}")
-    public String borrarProductoForm(@PathVariable int id){
-        LineaPedido lineaPedido=serviceLineaPedido.findById(id);
-        if (lineaPedido!= null) {
+
+    @GetMapping("/carrito/borrar/{id}")
+    public String borrarProductoForm(@PathVariable int id) {
+        LineaPedido lineaPedido = serviceLineaPedido.findById(id);
+        if (lineaPedido != null) {
             serviceLineaPedido.delete(lineaPedido);
             recorrerCarrito(lineaPedido);
             return "redirect:/carrito";
-            }else{
+        } else {
             return "redirect:/index";
         }
     }
 
     @GetMapping({"/cliente/facturacion"})
-    public String clienteNewForm(Model model, LineaPedido lineaPedido) {
+    public String clienteNewForm(Model model, LineaPedido lineaPedido, PayPal payPal) {
         Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
         lineaPedido.setPedido(pedido1);
 
         List<LineaPedido> lineaPedido1 = serviceLineaPedido.selectLineas(pedido1.getIdPedido());
+
+        payPal.setCurrency("EUR");
+        payPal.setMethod("paypal");
+        payPal.setIntent("sale");
+
+        model.addAttribute("price", pedido1.getTotalPedido());
+        model.addAttribute("currency", payPal.getCurrency());
+        model.addAttribute("method", payPal.getMethod());
+        model.addAttribute("intent", payPal.getIntent());
+
 
         //CONFIRMAT
         model.addAttribute("clienteAceptar", new Cliente());
@@ -151,32 +171,106 @@ public class CarritoController {
         return "clienteFacturacion";
     }
 
-    @PostMapping({"/cliente/facturacion/submit"})
-    public String nuevoclienteSubmit(@ModelAttribute("clienteAceptar")Cliente cliente) {
+    @PostMapping({"/pay"})
+    public String nuevoclienteSubmit(@ModelAttribute("clienteAceptar") Cliente cliente, PayPal payPal) {
         Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
-        Cliente cliente1 =clienteService.getCliente(cliente.getEmail());
+        Cliente cliente1 = clienteService.getCliente(cliente.getEmail());
 
         //creo el cliente si no existe
-        if(cliente1 ==null) {
+        if (cliente1 == null) {
             clienteService.add(cliente);
             pedido1.setCliente(cliente);
-        }else{
+        } else {
             //añadir al pedido el cliente
             pedido1.setCliente(cliente1);
         }
-        //confirmo el pedido y agrego la fecha actual
-            pedido1.setFecha(String.valueOf(LocalDate.now()));
-            pedido1.setConfir(true);
-        //tambien borrar las lienas de pedido
+        //agrego la fecha actual al pedido
+        pedido1.setFecha(String.valueOf(LocalDate.now()));
 
-        return "redirect:/pagarTarjeta";
+        /**
+         * La parte de Paypal
+         */
+        try {
+            Payment payment = paypalService.createPayment(pedido1.getTotalPedido(), payPal.getCurrency(), payPal.getMethod(),
+                    payPal.getIntent(), "http://localhost:9000/" + CANCEL_URL,
+                    "http://localhost:9000/" + SUCCESS_URL);
+            for (Links link : payment.getLinks()) {
+                if (link.getRel().equals("approval_url")) {
+                    return "redirect:" + link.getHref();
+                }
+            }
+
+        } catch (PayPalRESTException e) {
+
+            e.printStackTrace();
+        }
+
+        return "redirect:/";
     }
-    @GetMapping({"/pagarTarjeta"})
-    public String pagarTarjeta(Model model, Pedido pedido){
-        //añadir paypal
-        //model.addAttribute("listTarjeta",pedido);
-        return "pagar";
+
+    /*   @GetMapping({"/pagarTarjeta"})
+       public String pagarTarjeta(Model model, PayPal payPal) {
+           Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
+           payPal.setCurrency("EUR");
+           payPal.setMethod("paypal");
+           payPal.setIntent("sale");
+
+           model.addAttribute("price", pedido1.getTotalPedido());
+           model.addAttribute("currency", payPal.getCurrency());
+           model.addAttribute("method", payPal.getMethod());
+           model.addAttribute("intent", payPal.getIntent());
+          return "pagar";
+       } */
+ /*   @PostMapping("/pay")
+    public String payment(@ModelAttribute("payment") PayPal payPal) {
+        Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
+        try {
+            Payment payment = paypalService.createPayment(pedido1.getTotalPedido(), payPal.getCurrency(), payPal.getMethod(),
+                    payPal.getIntent(), "http://localhost:9000/" + CANCEL_URL,
+                    "http://localhost:9000/" + SUCCESS_URL);
+            for(Links link:payment.getLinks()) {
+                if(link.getRel().equals("approval_url")) {
+                    return "redirect:"+link.getHref();
+                }
+            }
+
+        } catch (PayPalRESTException e) {
+
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }*/
+    @GetMapping(value = CANCEL_URL)
+    public String cancelPay() {
+        return "cancel";
     }
+
+    @GetMapping(value = SUCCESS_URL)
+    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+        Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
+        try {
+            Payment payment = paypalService.executePayment(paymentId, payerId);
+            System.out.println(payment.toJSON());
+            if (payment.getState().equals("approved")) {
+               /* ScriptEngineManager manager =new ScriptEngineManager();
+                ScriptEngine script = manager.getEngineByName("javascript");
+                try {
+                    script.eval("alert('Pedido confirmado')");
+                } catch (ScriptException e) {
+                    throw new RuntimeException(e);
+                }*/
+                /**
+                 * una vez el cliente ha pagado correctamente, el pedido pasará a estar confirmado.
+                 */
+                pedido1.setConfir(true);
+                return "/index";
+            }
+        } catch (PayPalRESTException e) {
+            System.out.println(e.getMessage());
+        }
+        return "redirect:/";
+    }
+
 
     public void recorrerCarrito(LineaPedido linea) {
         double totalCarrito = 0;
@@ -188,6 +282,7 @@ public class CarritoController {
 
         linea.getPedido().setTotalPedido(totalCarrito + linea.getPedido().getpEnvio());
     }
+
     public void calcularEnvio(@ModelAttribute("lineaPedido") LineaPedido linea) {
 
         if (linea.getPtotal() < 3) {

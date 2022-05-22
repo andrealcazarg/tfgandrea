@@ -14,7 +14,7 @@
     <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet">
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<!--    <link rel="stylesheet" th:href="@{/css/loginregister2.css}"/>-->
+    <!--    <link rel="stylesheet" th:href="@{/css/loginregister2.css}"/>-->
     <link rel="stylesheet" th:href="@{/css/loginregister3.css}"/>
 
 </head>
@@ -68,10 +68,9 @@
 <div class="row" id="row-facturacion">
     <div class="content-main">
         <form method="post" action="#"
-              th:action="${clienteAceptar.idCliente != 0 and clienteAceptar.email !=null} ? @{/cliente/facturacion/submit} : @{/cliente/facturacion/submit}"
-              th:object="${clienteAceptar}">
-            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Pagar Tarjeta' : 'Nuevo cliente'">Formulario cliente</h1>
-<!--            th:action="@{/cliente/facturacion/{idCliente}(idCliente=${clienteAceptar.idCliente})}-->
+              th:action="${clienteAceptar.idCliente != 0 and clienteAceptar.email !=null} ? @{/pay} : @{/pay}" th:object="${clienteAceptar}">
+            <h1 th:text="${clienteAceptar.idCliente != 0} ? 'Pagar Tarjeta' : 'Nuevo cliente'">Direccion de facturación</h1>
+
             <div class="agrupacion">
                 <div class="form-group">
                     <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre"
@@ -89,7 +88,8 @@
                                                                               th:field="*{nombreEmpresa}"/>
                 </div>
                 <div class="form-group">
-                    <label for="pais">Pais</label> <input type="email" class="form-control" id="pais" placeholder="España" th:field="*{pais}" readonly/>
+                    <label for="pais">Pais</label> <input type="email" class="form-control" id="pais"
+                                                          placeholder="España" th:field="*{pais}" readonly/>
                 </div>
                 <div class="form-group">
                     <label for="direccion">Direccion</label> <input type="text" class="form-control" id="direccion"
@@ -147,16 +147,31 @@
 
                     </tbody>
                     <tfoot th:each="total : ${totalCarrito}">
-                        <tr>
-                            <th>Envio</th>
-                            <td th:text="${precioEnvio} + ' €'"></td>
-                        </tr>
-                        <tr>
-                            <th>Total Pedido</th>
-                            <td th:text="${totalCarrito} + ' €'"></td>
-                        </tr>
+                    <tr>
+                        <th>Envio</th>
+                        <td th:text="${precioEnvio} + ' €'"></td>
+                    </tr>
+                    <tr>
+                        <th>Total Pedido</th>
+                        <td th:text="${totalCarrito} + ' €'"></td>
+                    </tr>
                     </tfoot>
                 </table>
+                <div class="container" id="container-pasarela">
+
+
+                    <input type="text" id="price" name="price" th:value="${price}" hidden>
+
+                    <input type="text" id="currency" name="currency" placeholder="Enter Currency" th:value="${currency}"
+                           hidden>
+
+                    <input type="text" id="method" name="method" placeholder="Payment Method" th:value="${method}"
+                           hidden>
+
+                    <input type="text" id="intent" name="intent" placeholder="intent" th:value="${intent}" hidden>
+
+
+                </div>
                 <button type="submit" class="btn btn btn-primary" id="boton-naranja">Pagar</button>
             </div>
 

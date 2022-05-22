@@ -25,7 +25,7 @@ public class ControllerRest {
 
         return clienteService.findAll();
     }
-    @GetMapping("cliente/{id}")
+    @GetMapping("/cliente/{id}")
     public Cliente getCliente(@PathVariable Integer id){
         return clienteService.findById(id);
     }
@@ -34,11 +34,11 @@ public class ControllerRest {
 
         return pedidoService.findAll();
     }
-    @GetMapping("pedidoConfir")
+    @GetMapping("/pedidoConfir")
     public Pedido getConfir(){
         return pedidoService.findConfir();
     }
-    @GetMapping("pedido/{id}")
+    @GetMapping("/pedido/{id}")
     public Pedido getPedido(@PathVariable Integer id){
         return pedidoService.findById(id);
     }
