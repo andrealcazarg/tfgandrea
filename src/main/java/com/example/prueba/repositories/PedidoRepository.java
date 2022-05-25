@@ -15,4 +15,6 @@ public interface PedidoRepository extends JpaRepository<Pedido,Integer> {
     String obtenerID();
     @Query("select u from Pedido u where u.confir = false ")
     Pedido findConfir();
+    @Query("select u from Pedido u where u.confir = true")
+    Pedido findConfir2();
 }
