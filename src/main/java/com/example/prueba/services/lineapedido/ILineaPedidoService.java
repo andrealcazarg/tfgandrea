@@ -14,5 +14,6 @@ public interface ILineaPedidoService {
     void delete(LineaPedido u);
     List<LineaPedido> selectLineas(Integer idPedido);
     LineaPedido loginByProducto(Integer idProducto);
+    LineaPedido selectLineasPendiente(Integer idPedido);
 
 }

@@ -52,4 +52,9 @@ public class LineaPedidoService implements ILineaPedidoService {
     public LineaPedido loginByProducto(Integer idProducto) {
         return repositorio.loginByProducto(idProducto);
     }
+
+    @Override
+    public LineaPedido selectLineasPendiente(Integer idPedido) {
+        return repositorio.selectLineasPendiente(idPedido);
+    }
 }

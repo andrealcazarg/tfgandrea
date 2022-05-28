@@ -14,7 +14,8 @@ public class Pedido {
     private String fecha; //private Date fecha
     @Column
     private boolean confir;
-
+    @Column
+    private boolean enviado;
     @ManyToOne()
     @JoinColumn(name = "id_cliente", foreignKey = @ForeignKey(name = "FK_cliente"))
     Cliente cliente;
@@ -27,6 +28,7 @@ public class Pedido {
     @Column(precision = 5, scale = 2)
     private double pEnvio;
 
+
     public Pedido() {
     }
 
@@ -37,7 +39,7 @@ public class Pedido {
         this.sesionID = sesionID;
     }*/
 
-    public Pedido(String fecha, boolean confir, String sesionID,double totalPedido, double pEnvio) {
+    public Pedido(String fecha, boolean confir, String sesionID,double totalPedido, double pEnvio,boolean enviado) {
         this.fecha = String.valueOf(LocalDate.now());
         this.confir = confir;
         this.sesionID = sesionID;
@@ -99,6 +101,14 @@ public class Pedido {
         this.pEnvio = pEnvio;
     }
 
+    public boolean isEnviado() {
+        return enviado;
+    }
+
+    public void setEnviado(boolean enviado) {
+        this.enviado = enviado;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
@@ -109,6 +119,7 @@ public class Pedido {
                 ", sesionID='" + sesionID + '\'' +
                 ", totalPedido=" + totalPedido +
                 ", pEnvio=" + pEnvio +
+                ", enviado=" + enviado +
                 '}';
     }
 }

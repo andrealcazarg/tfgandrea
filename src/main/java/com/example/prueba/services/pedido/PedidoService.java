@@ -52,7 +52,12 @@ public class PedidoService implements IPedidoService {
     }
 
     @Override
-    public Pedido findConfir() {
+    public List<Pedido> findAllPedido() {
+        return repositorio.findAllPedido();
+    }
+
+    @Override
+    public List<Pedido> findConfir() {
         return repositorio.findConfir();
     }
 
