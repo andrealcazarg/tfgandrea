@@ -54,7 +54,7 @@ public class LineaPedidoService implements ILineaPedidoService {
     }
 
     @Override
-    public LineaPedido selectLineasPendiente(Integer idPedido) {
+    public List<LineaPedido> selectLineasPendiente(Integer idPedido) {
         return repositorio.selectLineasPendiente(idPedido);
     }
 }

@@ -8,9 +8,7 @@ import com.example.prueba.services.cliente.ClienteService;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
 import com.example.prueba.services.pedido.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,7 +45,17 @@ public class ControllerRest {
         return pedidoService.findById(id);
     }*/
     @GetMapping("/confirmar/{id}") //inf cliente,linea pedido x id pedido
-    public LineaPedido selectLineasPendiente(@PathVariable Integer id){
+    public List<LineaPedido> selectLineasPendiente(@PathVariable Integer id){
         return lineaPedidoService.selectLineasPendiente(id);
+    }
+    @PutMapping("/modiPedido/{id}")
+    public void updatePedido(@RequestBody Pedido pedido1, @PathVariable int id) {
+        Pedido pedido = pedidoService.findById(id);
+        //pedido.set(pedido1.getNombre());
+
+        pedido.setEnviado(pedido1.isEnviado());
+        pedidoService.edit(pedido);
+
+
     }
 }

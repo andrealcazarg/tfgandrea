@@ -14,7 +14,7 @@ public interface LineaPedidoRepository extends JpaRepository<LineaPedido,Integer
     List<LineaPedido> selectLineas(@Param("idPedido") Integer idPedido);
 
     @Query("SELECT u from LineaPedido u where  u.pedido.idPedido = :idPedido")
-    LineaPedido selectLineasPendiente(@Param("idPedido") Integer idPedido);
+    List<LineaPedido> selectLineasPendiente(@Param("idPedido") Integer idPedido);
 
     @Query("SELECT u FROM LineaPedido u WHERE u.producto.IdProducto = :idProducto and u.pedido.confir= false")
     LineaPedido loginByProducto(@Param("idProducto") Integer idProducto);
