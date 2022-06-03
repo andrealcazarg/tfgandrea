@@ -49,11 +49,11 @@ public class ControllerRest {
         return lineaPedidoService.selectLineasPendiente(id);
     }
     @PutMapping("/modiPedido/{id}")
-    public void updatePedido(@RequestBody Pedido pedido1, @PathVariable int id) {
-        Pedido pedido = pedidoService.findById(id);
-        //pedido.set(pedido1.getNombre());
+    public void updatePedido(@RequestBody Pedido pedido, @PathVariable int id) {
+        //Pedido pedido1 = pedidoService.findById(id);
+        pedido.setEnviado(true);
 
-        pedido.setEnviado(pedido1.isEnviado());
+        //pedido1.setEnviado(pedido.isEnviado());
         pedidoService.edit(pedido);
 
 
