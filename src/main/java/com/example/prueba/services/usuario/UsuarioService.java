@@ -41,7 +41,7 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
-    public Usuario loginByPass(String email, String pass) {
-        return repositorio.loginByPass(email,pass);
+    public Usuario loginByPass(String email, String password) {
+        return repositorio.loginByPass(email,password);
     }
 }

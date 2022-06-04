@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
 
-    @Query("SELECT u FROM Usuario u WHERE u.email = :emailEntrada and u.password = :contrasenyaEntrada")
-    Usuario loginByPass(@Param("emailEntrada") String emailEntrada, @Param("contrasenyaEntrada") String contrasenyaEntrada);
+    @Query("SELECT u FROM Usuario u WHERE u.email = :email and u.password = :password")
+    Usuario loginByPass(@Param("email") String email, @Param("password") String password);
 }

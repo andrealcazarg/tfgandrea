@@ -11,5 +11,5 @@ public interface IUsuarioService {
     Usuario findById(Integer id);
     Usuario edit(Usuario u);
     void delete(Usuario u);
-    Usuario loginByPass(String email,String pass);
+    Usuario loginByPass(String email,String password);
 }

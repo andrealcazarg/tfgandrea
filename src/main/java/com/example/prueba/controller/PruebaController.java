@@ -1,7 +1,9 @@
 package com.example.prueba.controller;
 
 import com.example.prueba.model.Prueba;
+import com.example.prueba.model.Usuario;
 import com.example.prueba.services.PruebaService;
+import com.example.prueba.services.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,8 @@ public class PruebaController {
 
     @Autowired
     private PruebaService servicio;
+    @Autowired
+    private UsuarioService usuarioService;
 
 
     @PostMapping("/addPrueba")
@@ -48,4 +52,9 @@ public class PruebaController {
 
 
     }
+    @GetMapping("/listarUsu/{id}")
+    public Usuario getUsu(@PathVariable Integer id){
+        return usuarioService.findById(id);
+    }
+
 }
