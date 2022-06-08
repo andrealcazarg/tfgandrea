@@ -24,41 +24,43 @@ public class ControllerRest {
 
     @GetMapping("/listCliente")
     public List<Cliente> findAllCliente(){
-
         return clienteService.findAll();
     }
+
     @GetMapping("/cliente/{id}")
     public Cliente getCliente(@PathVariable Integer id){
         return clienteService.findById(id);
     }
-
+    /**
+     *
+     * @return todos los pedidos where enviado = true
+     */
     @GetMapping("/listPedido")
-    public List<Pedido> findAllPedido(){ //enviado ==true
+    public List<Pedido> findAllPedido(){
         return pedidoService.findAllPedido();
     }
-    @GetMapping("/pedidoConfir") //enviado ==false
+    /**
+     *
+     * @return todos los pedidos where enviado = false
+     */
+    @GetMapping("/pedidoConfir")
     public List<Pedido> getConfir(){
         return pedidoService.findConfir();
     }
-  /*  @GetMapping("/pedido/{id}")
-    public Pedido getPedido(@PathVariable Integer id){
-        return pedidoService.findById(id);
-    }*/
-    @GetMapping("/confirmar/{id}") //inf cliente,linea pedido x id pedido
+
+    @GetMapping("/infCliente/{id}") //inf cliente,linea pedido x id pedido
     public List<LineaPedido> selectLineasPendiente(@PathVariable Integer id){
         return lineaPedidoService.selectLineasPendiente(id);
     }
+
     @PutMapping("/modiPedido/{id}")
     public void updatePedido(@RequestBody Pedido pedido) {
-        //Pedido pedido1 = pedidoService.findById(id);
         pedido.setEnviado(true);
-
-        //pedido1.setEnviado(pedido.isEnviado());
         pedidoService.edit(pedido);
     }
+
     @GetMapping("/login/{email}/{password}")
     public Usuario loginByPass(@PathVariable String email, @PathVariable String password){
-
         return usuarioService.loginByPass(email,password);
     }
 }

@@ -58,11 +58,11 @@
         </div>
     </div>
 </nav>
-<section class="py-5">
+<section class="py-5 d-flex">
     <div class="container">
-        <div class="row-tienda gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <div class="col mb-5 p-3" th:each="listaProducto : ${listaProductos}">
-                <div id="marco" class="card h-40 mb-2 ">
+        <div class="row-tienda row-cols-xl-3">
+            <div class="col p-2" th:each="listaProducto : ${listaProductos}">
+                <div id="marco" class="card mb-2 ">
                     <!-- Product image-->
                     <img class="card-img-top" id="foto-grande" th:src="${listaProducto.getImagen()}" alt="..." />
 
@@ -86,9 +86,18 @@
                 </div>
             </div>
         </div>
-        <div id="row-tienda"  style="font-size: 35px">Si desea ir más allá de la comparación de las métricas de
-            rendimiento de los anuncios fila por fila, configure una prueba del texto de anuncios y deje que
 
+    </div>
+    <div class="sidebar" id="sidebar-id">
+        <div class="categorias">
+            <h5>Categorias</h5>
+            <!--                    <h6 id="margin-bote">Botes de Miel</h6>-->
+            <ul class="navbar-nav" id="ul-margin" th:each="lineasCategoria : ${listCategorias}">
+                <li class="nav-item">
+                    <a class="nav-link" id="nav-sidebar" th:text="${lineasCategoria.getNombre()}"
+                       th:href="@{/categoria/{idCategoria}(idCategoria=${lineasCategoria.getIdCategoria()})}">BIENVENIDOS</a>
+                </li>
+            </ul>
         </div>
     </div>
 </section>

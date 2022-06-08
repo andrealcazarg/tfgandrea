@@ -48,15 +48,17 @@ public class CarritoController {
     @GetMapping({"/tienda"})
     public String listarUsu(Model model) {
         model.addAttribute("listaProductosTienda", servicio.findAll());
+        model.addAttribute("listCategorias", serviceCategoria.findAll());
         return "tienda";
     }
 
     @GetMapping("/categoria/{idCategoria}")
     public String listarCategoria(Model model, @PathVariable int idCategoria) {
+        model.addAttribute("listCategorias", serviceCategoria.findAll());
         Categoria categoria = serviceCategoria.findById(idCategoria);
 
-        model.addAttribute("listaProductos", servicio.selectProducto(idCategoria));
         model.addAttribute("listaCategoria", categoria);
+        model.addAttribute("listaProductos", servicio.selectProducto(idCategoria));
         return "tiendaCategoria";
     }
 

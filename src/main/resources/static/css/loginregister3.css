@@ -90,6 +90,8 @@ ul.navbar-nav{
 .row-tienda{
     margin-top: 8%;
     display:flex;
+    flex-wrap: wrap;
+
 }
 .row-footer{
     margin: 0;
@@ -136,6 +138,10 @@ ul.navbar-nav{
     float: left;
     width: 30%;
 }
+#sidebar-id{
+    margin-top:10em;
+    width: 25%;
+}
 .pagar{
     margin-top: 1em;
     width: fit-content;
@@ -144,6 +150,7 @@ ul.navbar-nav{
     text-decoration: none;
     color:black;
 }
+
 #nav-sidebar:hover{
     text-decoration: none;
     color:orange;
@@ -286,7 +293,7 @@ section{
     height:6em;
 }
 #foto-grande{
-    height: 320px;
+    height: 35vh;
 }
 td{
     vertical-align: middle;
@@ -319,6 +326,8 @@ td{
 
 #marco{
     border: 2px lightsalmon outset;
+    width: 70%;
+    margin:auto;
 }
 .flecha{
     /*padding:5px;*/
