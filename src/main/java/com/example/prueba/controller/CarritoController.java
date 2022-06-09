@@ -213,38 +213,6 @@ public class CarritoController {
         return "redirect:/";
     }
 
-    /*   @GetMapping({"/pagarTarjeta"})
-       public String pagarTarjeta(Model model, PayPal payPal) {
-           Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
-           payPal.setCurrency("EUR");
-           payPal.setMethod("paypal");
-           payPal.setIntent("sale");
-
-           model.addAttribute("price", pedido1.getTotalPedido());
-           model.addAttribute("currency", payPal.getCurrency());
-           model.addAttribute("method", payPal.getMethod());
-           model.addAttribute("intent", payPal.getIntent());
-          return "pagar";
-       } */
- /*   @PostMapping("/pay")
-    public String payment(@ModelAttribute("payment") PayPal payPal) {
-        Pedido pedido1 = servicePedido.selectPedido(servicePedido.obtenerID());
-        try {
-            Payment payment = paypalService.createPayment(pedido1.getTotalPedido(), payPal.getCurrency(), payPal.getMethod(),
-                    payPal.getIntent(), "http://localhost:9000/" + CANCEL_URL,
-                    "http://localhost:9000/" + SUCCESS_URL);
-            for(Links link:payment.getLinks()) {
-                if(link.getRel().equals("approval_url")) {
-                    return "redirect:"+link.getHref();
-                }
-            }
-
-        } catch (PayPalRESTException e) {
-
-            e.printStackTrace();
-        }
-        return "redirect:/";
-    }*/
     @GetMapping(value = CANCEL_URL)
     public String cancelPay() {
         return "cancel";

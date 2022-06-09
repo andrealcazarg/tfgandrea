@@ -15,9 +15,6 @@ import java.util.List;
 @Controller
 public class MainController {
 
-     @Autowired
-     private LineaPedidoService service;
-
     @GetMapping("/")
     public String welcome(Model model, HttpSession session) {
         @SuppressWarnings("unchecked")
@@ -28,6 +25,7 @@ public class MainController {
         model.addAttribute("sessionMessages", messages);
         return "index";
     }
+
     @GetMapping("/nosotros")
     public String nosotros(Model model) {
         return "nosotros";
@@ -37,8 +35,9 @@ public class MainController {
     public String apadrina(Model model) {
         return "apadrina";
     }
+
     @GetMapping("/prueba")
-    public String prueba(Model model){
+    public String prueba(Model model) {
         return "prueba";
     }
 
