@@ -37,12 +37,16 @@
             <li>
               <a th:href="@{/producto/list}">Listar Producto</a>
             </li>
+
           </ul>
         <li>
           <a href="#categoriaSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categoria</a>
           <ul class="collapse list-unstyled" id="categoriaSubmenu">
             <li>
               <a th:href="@{/categoria/list}">Listar Categoria</a>
+            </li>
+            <li>
+              <a th:href="@{/categoria/new}">Nueva Categoria</a>
             </li>
           </ul>
         </li>
@@ -52,7 +56,7 @@
       </ul>
     </div>
   </nav>
-</div>
+
 <div id="content" class="nav-content">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <div class="container-fluid">
@@ -84,11 +88,11 @@
         </span>
     </div>
   </nav>
-    <div class="row">
+    <div class="row-list">
       <div class="content-main" >
         <form method="post" action="#" th:action="${productoForm.idProducto != 0} ? @{/producto/edit/submit} : @{/producto/new/submit}"
               th:object="${productoForm}">
-          <h1 th:text="${productoForm.idProducto!= 0} ? 'Editar cliente' : 'Nuevo producto'">Nuevo producto</h1>
+          <h1 th:text="${productoForm.idProducto!= 0} ? 'Editar producto' : 'Nuevo producto'">Nuevo producto</h1>
 
 
           <div class="form-group">
@@ -120,7 +124,7 @@
       </div>
     </div>
 </div>
-
+</div>
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>

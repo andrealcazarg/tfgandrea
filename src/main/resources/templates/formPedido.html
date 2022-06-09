@@ -27,6 +27,9 @@
           <li>
             <a th:href="@{/cliente/list}">Listar Cliente</a>
           </li>
+          <li>
+            <a th:href="@{/cliente/new}">Nuevo Cliente</a>
+          </li>
         </ul>
       </li>
       <li>
@@ -44,6 +47,9 @@
         <ul class="collapse list-unstyled" id="categoriaSubmenu">
           <li>
             <a th:href="@{/categoria/list}">Listar Categoria</a>
+          </li>
+          <li>
+            <a th:href="@{/categoria/new}">Nueva Categoria</a>
           </li>
         </ul>
       </li>
@@ -84,11 +90,11 @@
         </span>
     </div>
   </nav>
-  <div class="row">
+  <div class="row-list">
       <div class="content-main" >
         <form method="post" action="#" th:action="${pedidoForm.idPedido != 0} ? @{/pedido/edit/submit} : @{/pedido/new/submit}"
               th:object="${pedidoForm}">
-          <h1 th:text="${pedidoForm.idPedido != 0} ? 'Editar cliente' : 'Nuevo Pedido'">Nuevo pedido</h1>
+          <h1 th:text="${pedidoForm.idPedido != 0} ? 'Editar pedido' : 'Nuevo Pedido'">Nuevo pedido</h1>
 
 
           <div class="form-group">

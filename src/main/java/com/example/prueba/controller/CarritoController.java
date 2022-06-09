@@ -2,6 +2,7 @@ package com.example.prueba.controller;
 
 import com.example.prueba.model.*;
 import com.example.prueba.paypal.PaypalService;
+import com.example.prueba.services.Email;
 import com.example.prueba.services.categoria.CategoriaService;
 import com.example.prueba.services.cliente.ClienteService;
 import com.example.prueba.services.lineapedido.LineaPedidoService;
@@ -24,6 +25,8 @@ import java.util.List;
 
 @Controller
 public class CarritoController {
+    @Autowired
+    Email emailService;
     @Autowired
     private ProductoService servicio;
     @Autowired
@@ -254,17 +257,16 @@ public class CarritoController {
             Payment payment = paypalService.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
-               /* ScriptEngineManager manager =new ScriptEngineManager();
-                ScriptEngine script = manager.getEngineByName("javascript");
-                try {
-                    script.eval("alert('Pedido confirmado')");
-                } catch (ScriptException e) {
-                    throw new RuntimeException(e);
-                }*/
                 /**
                  * una vez el cliente ha pagado correctamente, el pedido pasará a estar confirmado.
                  */
                 pedido1.setConfir(true);
+                /**
+                 * Aqui enviamos un correo electronico al cliente.
+                 */
+                emailService.sendSimpleEmail(pedido1.getCliente().getEmail(), "Tu pedido ha sido realizado",
+                        "Tu pedido se ha enviado correctamente a las " +pedido1.getFecha() +" con un importe de: "
+                                +pedido1.getTotalPedido()+"€ ");
                 return "/index";
             }
         } catch (PayPalRESTException e) {

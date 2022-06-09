@@ -1,6 +1,5 @@
 package com.example.prueba.repositories;
 
-import com.example.prueba.model.Prueba;
 import com.example.prueba.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
