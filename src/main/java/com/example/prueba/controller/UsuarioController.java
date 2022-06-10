@@ -23,7 +23,6 @@ public class UsuarioController {
         model.addAttribute("usuarioForm", new Usuario());
         return "admin";
     }
-
     @PostMapping("/admin/submit")
     public String login(@ModelAttribute("loginForm") Usuario usuario) {
         Usuario usuarioTemp = servicio.loginByPass(usuario.getEmail(), usuario.getPassword());
@@ -34,7 +33,6 @@ public class UsuarioController {
             return "admin"; //DATOS INCORRECTOS
         }
     }
-
     @GetMapping("/admin/cerrar")
     public String usuarioCerrarSesion() {
         Constante.login = null;

@@ -15,14 +15,10 @@ public class PaypalService {
 	@Autowired
 	private APIContext apiContext;
 	
-	
-	public Payment createPayment(Double total, String currency, String method, String intent, String cancelUrl, String successUrl)
-				throws PayPalRESTException{
+	public Payment createPayment(Double total, String currency, String method, String intent, String cancelUrl, String successUrl) throws PayPalRESTException{
 		Amount amount = new Amount();
 		amount.setCurrency(currency);
 		amount.setTotal(String.valueOf(total));
-//		total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
-//		amount.setTotal(String.format("%.2f".,  total));
 
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
@@ -41,10 +37,8 @@ public class PaypalService {
 		redirectUrls.setCancelUrl(cancelUrl);
 		redirectUrls.setReturnUrl(successUrl);
 		payment.setRedirectUrls(redirectUrls);
-
 		return payment.create(apiContext);
 	}
-	
 	public Payment executePayment(String paymentId, String payerId) throws PayPalRESTException{
 		Payment payment = new Payment();
 		payment.setId(paymentId);

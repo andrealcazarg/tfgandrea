@@ -31,16 +31,16 @@ public class CategoriaController {
     }
 
     @PostMapping("/categoria/new/submit")
-    public String nuevoCategoriaSubmit(@ModelAttribute("categoriaForm") Categoria categoria) { // recibimos el command objet a traves de @ModelAttribute que lo coge desde el form y lo inyecta en el atributo empleadoForm
-        service.add(categoria);        //@ModelAttribute realizar un binding de los datos de un formulario de Spring con el servicio.
+    public String nuevoCategoriaSubmit(@ModelAttribute("categoriaForm") Categoria categoria) {
+        service.add(categoria);
         return "redirect:/categoria/list";
     }
 
-    @GetMapping("/categoria/edit/{id}")                                   //
-    public String editarCategoriaForm(@PathVariable Integer id, Model model,Categoria categoria) {  // recibimos id desde el path
-       categoria = service.findById(id);                        // pasamos el id al servicio
+    @GetMapping("/categoria/edit/{id}")
+    public String editarCategoriaForm(@PathVariable Integer id, Model model, Categoria categoria) {
+        categoria = service.findById(id);                        // pasamos el id al servicio
         if (categoria != null) {
-            model.addAttribute("categoriaForm", categoria);//añadimos atributo e instancia del commandobject
+            model.addAttribute("categoriaForm", categoria);
             model.addAttribute("provincias", service.findAll());
             return "formCategoria";
         } else {
@@ -49,14 +49,14 @@ public class CategoriaController {
     }
 
     @PostMapping("/categoria/edit/submit")
-    public String editarCategoriaSubmit(@ModelAttribute("categoriaForm") Categoria categoria) { // recibimos el command objet a traves de @ModelAttribute que lo coge desde el form y lo inyecta en el atributo empleadoForm
-        service.edit(categoria);       //@ModelAttribute realiza un binding de los datos de un formulario de Spring con el servicio.
+    public String editarCategoriaSubmit(@ModelAttribute("categoriaForm") Categoria categoria) {
+        service.edit(categoria);
         return "redirect:/categoria/list";
     }
 
-    @GetMapping("/categoria/borrar/{id}")                                   //
-    public String borrarCategoriaForm(@PathVariable Integer id) {  // recibimos id desde el path
-        Categoria categoria = service.findById(id);                        // pasamos el id al servicio
+    @GetMapping("/categoria/borrar/{id}")
+    public String borrarCategoriaForm(@PathVariable Integer id) {
+        Categoria categoria = service.findById(id);
         if (categoria != null) {
             service.delete(categoria);
             return "redirect:/categoria/list";

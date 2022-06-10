@@ -89,10 +89,8 @@
         <div class="row-list">
             <div class="content-main">
                 <form method="post" action="#"
-                      th:action="${categoriaForm.idCategoria != 0} ? @{/categoria/edit/submit} : @{/categoria/new/submit}"
-                      th:object="${categoriaForm}">
-                    <h1 th:text="${categoriaForm.idCategoria != 0} ? 'Editar categoria' : 'Nueva categoria'">Nueva
-                        categoria</h1>
+                      th:action="${categoriaForm.idCategoria != 0} ? @{/categoria/edit/submit} : @{/categoria/new/submit}" th:object="${categoriaForm}">
+                    <h1 th:text="${categoriaForm.idCategoria != 0} ? 'Editar categoria' : 'Nueva categoria'">Nueva categoria</h1>
                     <div class="form-group">
                         <label for="idCategoria"></label> <input type="hidden" class="form-control" id="idCategoria"
                                                                  th:field="*{idCategoria}"/>
@@ -101,7 +99,6 @@
                         <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre"
                                                                   placeholder="5928553w" th:field="*{nombre}" required/>
                     </div>
-
                     <button type="submit" class="btn btn btn-primary">Enviar</button>
                 </form>
             </div>
