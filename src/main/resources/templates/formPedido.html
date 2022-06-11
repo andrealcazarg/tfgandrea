@@ -96,7 +96,10 @@
               th:object="${pedidoForm}">
           <h1 th:text="${pedidoForm.idPedido != 0} ? 'Editar pedido' : 'Nuevo Pedido'">Nuevo pedido</h1>
 
-
+          <div class="form-group">
+            <label for="idPedido"></label> <input type="hidden" class="form-control" id="idPedido"
+                                                     th:field="*{idPedido}"/>
+          </div>
           <div class="form-group">
             <label for="fecha">Fecha</label> <input type="text" class="form-control" id="fecha" placeholder="5928553w" th:field="*{fecha}" required/>
           </div>

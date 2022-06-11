@@ -43,8 +43,8 @@ public class ProductoController {
 
 
     @GetMapping("/producto/edit/{id}")                                   //
-    public String editarProductoForm(@PathVariable int id, Model model) {  // recibimos id desde el path
-        Producto producto = servicio.findById(id);                        // pasamos el id al servicio
+    public String editarProductoForm(@PathVariable int id, Model model,Producto producto) {  // recibimos id desde el path
+       producto = servicio.findById(id);                        // pasamos el id al servicio
         if (producto != null) {
             model.addAttribute("productoForm", producto); //añadimos atributo e instancia del commandobject
             model.addAttribute("categorias", service.findAll());

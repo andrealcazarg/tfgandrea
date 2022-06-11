@@ -74,12 +74,7 @@
                         </div>
                         <div class="small mb-3 fw-bold"
                              th:text=" 'Categoria: ' + ${listaProductosTienda.getCategoria().nombre}"></div>
-                        <p class="lead">Descripcion:
-                            Miel Multiflora con Eucalipto. Muy energética,
-                            ayuda a combatir el cansancio. * Es rica en una gran variedad de vitaminas, minerales y
-                            <!--                            antioxidantes, Es considerada multiflora porque no denomina ninguna especie floral-->
-                            <!--                            por encima de las demás. contiene azúcares naturales como la fructosa, glucosa y-->
-                            <!--                            sacarosa. Ideal para infecciones, gripes y resfriados, también combate la anemia.-->
+                        <p class="lead" th:text=" 'Descripción: ' + ${listaProductosTienda.descripcion}">
                         </p>
                         <div class="small mb-3 fw-bold"
                              th:text=" 'Peso: ' + ${listaProductosTienda.getPeso() + ' Kg'}"></div>
@@ -102,10 +97,10 @@
 <footer class="footer pt-10 mt-auto footer-black">
     <div class="container">
         <div class="row-footer">
-            <div class="col-lg-3 mt-5">
+            <div class="col-lg-3">
                 <div class="footer-brand"> Miel Cuarta Generacion</div>
                 <div class="mb-2 fw-light ">Siguenos en:</div>
-                <div class="icon-list-social mb-5">
+                <div class="icon-list-social mt-4">
                     <a class="icon-list-social-link" href="https://www.instagram.com/miel_cuartageneracion/">
                         <i class="bi bi-instagram"></i>
                     </a>

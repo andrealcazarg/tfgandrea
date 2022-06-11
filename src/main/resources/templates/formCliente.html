@@ -92,7 +92,10 @@
               th:object="${clienteForm}">
           <h1 th:text="${clienteForm.idCliente != 0} ? 'Editar cliente' : 'Nuevo cliente'">Nuevo cliente</h1>
 
-
+          <div class="form-group">
+            <label for="idCliente"></label> <input type="hidden" class="form-control" id="idCliente"
+                                                    th:field="*{idCliente}"/>
+          </div>
           <div class="form-group">
             <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" placeholder="5928553w" th:field="*{nombre}" required/>
           </div>
@@ -114,7 +117,6 @@
           <div class="form-group">
             <label for="provincia">Provincia</label> <select
                   th:field="*{provincia}" class="form-control"  id="provincia">
-            <option value="-1">---</option>
             <option th:each="provincia : ${provincias}"
                     th:value="${provincia.idProvincia}" th:text="${provincia.nombre}">Provincia</option>
           </select>
